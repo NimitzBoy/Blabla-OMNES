@@ -1,0 +1,105 @@
+
+.container { 
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Utilise 100% de la hauteur de la fenêtre de visualisation */
+    width: 100vw; /* Utilise 100% de la largeur de la fenêtre de visualisation */
+    gap: 0px; /* Espace entre les grilles */
+    box-sizing: border-box;
+}
+
+.Header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    background-image: url('Logo_Omnes_Education.svg-1024x267.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgb(255, 255, 255);
+}
+
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    background-image: url('photo route.jpg'); 
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.feetpage {
+    height: 100px;
+    width: 100%;
+    background-color: rgb(46, 44, 76);
+}
+
+.buttonLogin, .buttonMenu{
+    padding: 10px 20px;
+    background-color: rgb(46, 44, 76);
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    
+}
+
+.FormulaireRecherche {
+    padding: 40px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: line;
+    
+
+}
+
+.FormulaireRecherche input, .FormulaireRecherche button {
+    padding: 10px;
+    width: 100%; /* Pleine largeur du formulaire */
+    margin-bottom: 10px; /* Espacement entre les champs */
+}
+
+.FormulaireRecherche button,.ChoixLogin button {
+    background-color: rgb(46, 44, 76);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+html, body {
+    height: 100%; /* Utilisez 100% de la hauteur de l'écran */
+    width: 100%; /* Utilisez 100% de la largeur de l'écran */
+    margin: 0; /* Aucune marge pour le body ou html */
+    padding: 0; /* Aucun padding pour éviter tout débordement */
+    box-sizing: border-box; /* Calcule le padding et la bordure dans la largeur et hauteur */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    display: block;
+    width: 400px; 
+    height: 200px;
+    font-size: 20px;
+    margin: 10px;
+    cursor: pointer;
+    text-align: center;
+} 
+
+
+.ChoixLogin{
+    padding: 40px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: line;
+    column-gap: 10px;
+}
