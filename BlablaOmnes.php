@@ -1,6 +1,7 @@
 <!DOCTYPE html >
 <html lang= "fr">
 <link rel= " stylesheet " href= "BlablaOmnes.css">
+
 <head >
 <title > BlablaOMNES.com </title >
 <meta charset= " UTF-8 ">

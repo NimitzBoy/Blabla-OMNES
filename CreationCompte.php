@@ -8,11 +8,10 @@
 </head>
 <body>
     <p class="style">
-        <input type="text" name="prenom"><br/><br/>
-        <input type="password" name="mot_de_passe"><br/><br/>
-        <input type="submit" value="Connexion">
-        <form action="CreationCompte.php" method="post">
-            <input type="submit" value="Création de Compte">
+        <form action="AjoutCompte.php" method="post">
+            <input type="text" name="prenom"><br/><br/>
+            <input type="password" name="mot_de_passe"><br/><br/>
+            <input type="submit" value="Création">
         </form>
     </p>
     </form>
