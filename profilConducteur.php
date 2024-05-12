@@ -1,11 +1,19 @@
 <!DOCTYPE html>
+<html lang= "fr">
 <html>
-    <head>
+
+<head>
+<title > BlablaOMNES.com </title >
+<meta charset= " UTF-8 ">
+<link rel= " stylesheet " href= "creationCompte.css">
+<div class= " feetpage ">Créer un profil conducteur</div >
+</head>
+
+
+    <body>
     
-
-
 <form method="post" action="formulaireVerifProfilConducteur.php">
-<h2>Créer un profil conducteur</h2><br>
+<br>
 Modèle du véhicule:<div><input type="text" name="Modèle_du_véhicule"><br></div>
 <br>
 Photo du véhicule:<div><form action="/upload" method="post" enctype="multipart/form-data">
@@ -24,11 +32,12 @@ Photo du permis de conduire:<div><form action="/upload" method="post" enctype="m
 <br>
 Préférences de voyage:<div><input type="password" name="Préférences_de_voyage"><br></div>
 <br>
-        <input type="submit" value="Valider">
+
+        <form method="post" action="login_conducteur.php">
+            <button type="submit">Valider</button>
+</form>
 
         <p><a href="formulaireVerifProfilConducteur.php?"></p>
 
-        
-
-</head>
+</body>
 </html>
