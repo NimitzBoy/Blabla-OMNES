@@ -1,18 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang= "fr">
+<html>
+
 <head>
-    <link rel="stylesheet" href="BlablaOmnes.css"> 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title > BlablaOMNES.com </title >
+<meta charset= " UTF-8 ">
+<link rel= " stylesheet " href= "creationCompte.css">
+<div class= " feetpage ">Créer un compte</div >
 </head>
+
 <body>
-    <p class="style">
-        <form action="AjoutCompte.php" method="post">
-            <input type="text" name="prenom"><br/><br/>
-            <input type="password" name="mot_de_passe"><br/><br/>
-            <input type="submit" value="Création">
-        </form>
-    </p>
-    </form>
+
+<form method="post" action="formulaireVerifCreationCompte.php">
+
+<br>
+Nom:<div><input type="text" name="Nom"><br></div>
+<br>
+Prénom:<div><input type="text" name="Prénom"><br></div>
+<br>
+Adresse mail:<div><input type="text" name="Adresse_mail"><br></div>
+<br>
+Numéro de téléphone:<div><input type="text" name="Numéro_de_téléphone"><br></div>
+<br>
+Photo de profil:<form action="/upload" method="post" enctype="multipart/form-data">
+  <label for="fileInput"></label>
+  <input type="file" id="fileInput" name="file">
+</form>
+<br>
+Mot de passe:<div><input type="password" name="Mot_de_passe"><br></div>
+<br>
+Confirmation du mot de passe:<div><input type="password" name="Confirmation_du_mot_de_passe"><br></div>
+<br>
+<br>
+        <form method="post" action="BlablaOmnes.html">
+            <button type="submit">Valider</button>
+</form>
+
+        <p><a href="formulaireVerifCreationCompte.php?"></p>
+
 </body>
+</html>
