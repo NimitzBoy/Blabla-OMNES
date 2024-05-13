@@ -18,7 +18,7 @@ catch (Exception $e)
 <div class= " container ">
     <div class= " Header ">
         <a href="Login.php" class="buttonMenu">Menu</a>
-        <a href="Login.php" class="buttonLogin">Se connecter</a>
+        <a href="choixUtilisateur.php" class="buttonLogin">Se connecter</a>
     </div >
     <body>
     <div class= " body ">

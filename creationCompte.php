@@ -5,7 +5,7 @@
 <head>
 <title > BlablaOMNES.com </title >
 <meta charset= " UTF-8 ">
-<link rel= " stylesheet " href= "creationCompte.css">
+<link rel= " stylesheet " href= "designCreationCompte.css">
 <div class= " feetpage ">Créer un compte</div >
 </head>
 
@@ -32,7 +32,7 @@ Mot de passe:<div><input type="password" name="Mot_de_passe"><br></div>
 Confirmation du mot de passe:<div><input type="password" name="Confirmation_du_mot_de_passe"><br></div>
 <br>
 <br>
-        <form method="post" action="BlablaOmnes.php">
+        <form method="post" action="AjoutCompte.php">
             <button type="submit">Valider</button>
 </form>
 
