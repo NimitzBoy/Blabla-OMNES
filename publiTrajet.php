@@ -1,12 +1,20 @@
 <!DOCTYPE html>
+<html lang= "fr">
 <html>
 
-    <head>
+
+<head>
+<title > BlablaOMNES.com </title >
+<meta charset= " UTF-8 ">
+<link rel= " stylesheet " href= "creationCompte.css">
+<div class= " feetpage ">Publier un nouveau trajet</div >
+</head>
+
+    <body>
 
 <form method="post" action="formulaireVerifPubliTrajet.php">
 
-<h2>Publier un trajet</h2>
-
+<br>
 Adresse de départ:<input type="text" name="Adresse_de_départ"><br>
 <br>
 Adresse d'arrivée:<input type="text" name="Adresse_d'arrivée"><br>
@@ -43,5 +51,5 @@ Prix du trajet par personne:<input type="text" name="Prix_du_trajet_par_personne
         <p><a href="formulaireVerifPubliTrajet.php?"></p>
 
     
-</head>
+</body>
 </html>
