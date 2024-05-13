@@ -1,0 +1,52 @@
+.grid-container{ 
+    display: grid;
+    grid-template-columns:repeat(1, 3fr);
+    flex-direction: line ;
+    grid-template-rows: auto; /* Ajuste la hauteur des lignes automatiquement */
+    height: 100vh; /* Utilise 100% de la hauteur de la fenêtre de visualisation */
+    width: 100vw; /* Utilise 100% de la largeur de la fenêtre de visualisation */
+    gap: 0px; /* Espace entre les grilles */
+    padding: 20px; /* Optionnel: Padding autour de la grille */
+    box-sizing: border-box;
+    display : grid ; .item1 {grid-area : Créer_un_compte ;}
+    } 
+    
+
+    .Header{
+        display: grid;
+        flex-direction: line;
+        height: 200px;
+        width: 100dvw;
+        gap:0px;
+        box-sizing: border-box;
+        background-image: url(https://cdn.cookielaw.org/logos/09e19896-ef38-4b96-ab77-49a15d92a7e7/8d76b914-31cb-4d77-872e-237b326de7be/2f02566a-a60f-4220-9b15-f416e7a8b336/omneseducation.png) ;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: rgb(159, 214, 244);   
+    }
+    
+    .body{
+        display: grid;
+        flex-direction: line;
+        height: 400px;
+        width: 100dvw;
+        gap:0px;
+        box-sizing: border-box;
+        
+        
+    }
+    
+    .feetpage{
+        display: grid;
+        flex-direction: line;
+        height: 200px;
+        width: 100dvw;
+        gap:0px;
+        box-sizing: border-box;
+        background-color: rgb(46, 44, 76);
+        color: white; /* Couleur du texte */
+        font-size: 50px; 
+        justify-content: center; /* Centre horizontalement le contenu du conteneur de grille */
+        align-content: center;
+        
+    }

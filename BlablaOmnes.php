@@ -1,8 +1,15 @@
 <!DOCTYPE html >
 <html lang= "fr">
 <link rel= " stylesheet " href= "BlablaOmnes.css">
-
- 
+<?php
+try{
+    $bdd = new PDO('mysql:host=localhost;dbname=Blabla-OMNES;charset=utf8','root','root');
+}
+catch (Exception $e)
+{
+    var_dump($e);
+}
+?>
 <head >
 <title > BlablaOMNES.com </title >
 <meta charset= " UTF-8 ">
