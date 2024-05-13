@@ -1,4 +1,3 @@
-
 <!DOCTYPE html >
 <html lang= "fr">
 <link rel= " stylesheet " href= "BlablaOmnes.css">
@@ -12,11 +11,11 @@
     </div>
     <div class= " body ">
         <div class="ChoixLogin">
-        <form action="Login_driver.php" method="post">
+        <form action="login_conducteur.php" method="post">
                 <button type="submit" class="button">Connectez-vous comme Conducteur</button>
             </form>
         
-        <form action="Login_passenger.php" method="post">
+        <form action="login_passager.php" method="post">
                 <button type="submit" class="button">Connectez-vous comme Passager</button>
         </form>    
     </div >
