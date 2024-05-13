@@ -12,11 +12,11 @@
     </div>
     <div class= " body ">
         <div class="ChoixLogin">
-        <form action="login_driver.php" method="post">
+        <form action="Login_driver.php" method="post">
                 <button type="submit" class="button">Connectez-vous comme Conducteur</button>
             </form>
         
-        <form action="login_passenger.php" method="post">
+        <form action="Login_passenger.php" method="post">
                 <button type="submit" class="button">Connectez-vous comme Passager</button>
         </form>    
     </div >
