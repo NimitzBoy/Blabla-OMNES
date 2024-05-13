@@ -3,7 +3,7 @@
 <link rel= " stylesheet " href= "BlablaOmnes.css">
 <?php
 try{
-    $bdd = new PDO('mysql:host=localhost;dbname=Blabla-OMNES;charset=utf8','root','root');
+    $bdd = new PDO($Serveur,$User,$Pass);
 }
 catch (Exception $e)
 {
