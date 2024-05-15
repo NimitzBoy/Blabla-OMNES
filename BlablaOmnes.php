@@ -1,15 +1,9 @@
 <!DOCTYPE html >
+<?php
+require_once("config.php");
+?>
 <html lang= "fr">
 <link rel= " stylesheet " href= "BlablaOmnes.css">
-<?php
-try{
-    $bdd = new PDO($Serveur,$User,$Pass);
-}
-catch (Exception $e)
-{
-    var_dump($e);
-}
-?>
 <head >
 <title > BlablaOMNES.com </title >
 <meta charset= " UTF-8 ">

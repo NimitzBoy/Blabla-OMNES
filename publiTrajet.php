@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+<?php
+require_once("config.php");
+?>
 <html lang= "fr">
 <html>
-
-
 <head>
 <title > BlablaOMNES.com </title >
 <meta charset= " UTF-8 ">

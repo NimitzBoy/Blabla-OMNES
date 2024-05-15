@@ -1,5 +1,7 @@
-
 <!DOCTYPE html >
+<?php
+require_once("config.php");
+?>
 <html lang= "fr">
 <link rel= " stylesheet " href= "BlablaOmnes.css">
 <head >

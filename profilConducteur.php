@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+require_once("config.php");
+?>
 <html lang= "fr">
 <html>
 
