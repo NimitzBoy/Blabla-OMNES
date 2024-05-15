@@ -7,7 +7,7 @@ require_once("config.php");
 <head>
 <title > BlablaOMNES.com </title >
 <meta charset= " UTF-8 ">
-<link rel= " stylesheet " href= "creationCompte.css">
+<link rel= " stylesheet " href= "designCreationCompte.css">
 <div class= " feetpage ">Publier un nouveau trajet</div >
 </head>
 
