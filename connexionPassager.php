@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang= "fr">
+<?php
+require_once("config.php");
+?>
 <html>
-
 <head>
 <title > BlablaOMNES.com </title >
 <meta charset= " UTF-8 ">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel= " stylesheet " href= "creationCompte.css">
+<link rel= " stylesheet " href= "designCreationCompte.css">
 <div class= " feetpage ">Connexion passager</div >
 </head>
 
