@@ -1,6 +1,6 @@
 <!DOCTYPE html >
 <html lang= "fr">
-<link rel= " stylesheet " href= "BlablaOmnes.css">
+<link rel= " stylesheet "href= "BlablaOmnes.css">
 <?php
 try{
     $bdd = new PDO('mysql:host=localhost;dbname=Blabla-OMNES;charset=utf8','root','root');
@@ -15,12 +15,13 @@ catch (Exception $e)
 <meta charset= " UTF-8 ">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head >
+<body>
 <div class= " container ">
     <div class= " Header ">
         <a href="Login.php" class="buttonMenu">Menu</a>
         <a href="Login.php" class="buttonLogin">Se connecter</a>
     </div >
-    <body>
+
     <div class= " body ">
         <div class="FormulaireRecherche">
             <form action="" method="post">
@@ -31,7 +32,8 @@ catch (Exception $e)
                 <button type="submit">Rechercher</button>
             </form>
        </div >
-</body>
-</div > 
+       </div > 
 <div class= " feetpage "></div >
+</body>
+
 </html >
