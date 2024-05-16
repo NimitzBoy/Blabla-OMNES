@@ -25,9 +25,7 @@ require_once("config.php");
                 <button type="submit">Rechercher</button>
                 
             </form>
-            
-            <form action="" method="post">
-            <button type="submit">Créer un trajet</button>
+
 </form>
 
        </div >
