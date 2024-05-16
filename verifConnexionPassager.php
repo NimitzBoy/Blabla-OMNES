@@ -31,8 +31,7 @@
          // utilisateur non trouvé
          echo "Adresse e-mail non enregistrée";
      }
-
- }
+}
  ?>
 
 
