@@ -23,14 +23,11 @@ require_once("config.php");
                 <input type="number" name="passagers" placeholder="Nombre de passagers" min="1" required>
                 <input type="date" name="date départ" placeholder="Date de départ" required>
                 <button type="submit">Rechercher</button>
-                
-            </form>
-            
+                </form>
             <form action="publiTrajet.php" method="post">
                 <button type="submit">Créer un trajet</button>
             </form>
-
-       </div >
+        </div >
 </body>
 </div > 
 <div class= " feetpage "></div >
