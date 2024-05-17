@@ -1,8 +1,8 @@
 <?php
 require_once("config.php");
 
-if (isset($_POST["Lieu Départ"], $_POST["destination"])) {
-    $lieu_depart = $_POST["Lieu Départ"];
+if (isset($_POST["Lieu_Départ"], $_POST["destination"])) {
+    $lieu_depart = $_POST["Lieu_Départ"];
     $lieu_arrivee = $_POST["destination"];
 
     try {

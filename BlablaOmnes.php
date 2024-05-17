@@ -18,10 +18,10 @@
         <div class= " body ">
             <div class="FormulaireRecherche">
                 <form action="AfficherTrajet.php" method="post">
-                    <input type="text" name=" Lieu Départ" placeholder="Lieu de Départ" required>
+                    <input type="text" name="Lieu_Départ" placeholder="Lieu de Départ" required>
                     <input type="text" name="destination" placeholder="Destination" required>
                     <input type="number" name="passagers" placeholder="Nombre de passagers" min="1" required>
-                    <input type="date" name="date départ" placeholder="Date de départ" required>
+                    <input type="date" name="date_départ" placeholder="Date de départ" required>
                     <button type="submit">Rechercher</button>
                 </form>
                 <form action="publiTrajet.php" method="post">
