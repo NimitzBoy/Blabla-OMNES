@@ -1,3 +1,6 @@
+<?php
+require_once("config.php");
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -10,7 +13,7 @@
     <div class="container">
         <div class="Header">
             <a href="Login.php" class="buttonMenu">Menu</a>
-            <a href="choixUtilisateur.php" class="buttonLogin">Se connecter</a>
+            <p>Bienvenue, <?php echo htmlspecialchars($_SESSION['prenom']); ?>!</p>
         </div>
         <div class="body">
             <div class="FormulaireRecherche">
@@ -23,6 +26,9 @@
                 </form>
                 <form action="publiTrajet.php" method="post">
                     <button type="submit">Créer un trajet</button>
+                </form>
+                <form method="post" action="deconnexion.php">
+                    <button type="submit">Déconnexion</button>
                 </form>
             </div>
         </div> 
