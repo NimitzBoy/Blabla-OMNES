@@ -17,22 +17,24 @@ require_once("config.php");
             <br>
             Adresse d'arrivée:<input type="text" name="Adresse_d'arrivée"><br>
             <br>
+            Date de départ:<input type="date" name="Date_départ"><br>
+            <br>
             Sélectionnez votre trajet :
-                <div>
-                    <input type="checkbox" name="aller" id="aller">
-                    <label for="aller">Aller</label>
-                    <br>
-                </div>
-                <div>
-                    <input type="checkbox" name="retour" id="retour">
-                    <label for="retour">Retour</label>
-                    <br>
-                </div>
-                <div>
-                    <input type="checkbox" name="Aller_et_retour" id="Aller et retour">
-                    <label for="Aller et retour">Aller et retour</label>
-                    <br>
-                </div>
+            <div>
+                <input type="radio" name="type_trajet" id="aller" value="Aller" required>
+                <label for="aller">Aller</label>
+                <br>
+            </div>
+            <div>
+                <input type="radio" name="type_trajet" id="retour" value="Retour" required>
+                <label for="retour">Retour</label>
+                <br>
+            </div>
+            <div>
+                <input type="radio" name="type_trajet" id="aller_retour" value="Aller et retour" required>
+                <label for="aller_retour">Aller et retour</label>
+                <br>
+            </div>
             <br>
             Prix du trajet par personne:<input type="text" name="Prix_du_trajet_par_personne">€<br>
             <br>
