@@ -1,17 +1,22 @@
-
 <?php
 require_once("config.php");
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST")
+{
+    if(isset($_POST['Mes_trajets']))
+    {
+        $Nom = htmlspecialchars($_POST['Mes_trajets']);
     
+    //verification des données POST
+    var_dump($_POST);
 
     // ID de l'utilisateur dont on veut afficher les trajets
-    $id_utilisateur = $_POST['id_utilisateur']=1;
-
+    $id_utilisateur = $_POST['id_utilisateur'];
+try{
     // Préparation et exécution de la requête SQL
-    $sql = "SELECT * FROM trajet WHERE id_utilisateur = :id_utilisateur";
+    $sql = "SELECT t.* FROM trajet t INNER JOIN ustilisateur u ON t.id_utilisateur=u.id WHERE u.id = :id_utilisateur";
     $stmt = $bdd->prepare($sql);
-    $stmt->bindParam(':id_utilisateur', $id_utilisateur, PDO::PARAM_INT);
+    $stmt->bindParam(':id_utilisateur', $id_utilisateur);
     $stmt->execute();
     
     // Vérification des résultats et affichage
@@ -36,16 +41,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Aucun trajet trouvé";
     }
 
-} catch(PDOException $e) {
-    die("Connection failed: " . $e->getMessage());
+}catch(PDOException $e) {
+    echo 'ERREUR : ' . $e->getMessage();
+        }
+    }
 }
-?>
 
-
-
-
-<?php 
-if(isset($_POST['Mes_trajets'])){
-    $Nom = htmlspecialchars($_POST['Mes_trajets']);
-}
 ?>

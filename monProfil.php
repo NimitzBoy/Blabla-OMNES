@@ -14,10 +14,10 @@ require_once("config.php");
 </head>
 
 <body>
-<form method="post" action="AjoutCompte.php">
+<form method="post" action="verifMonProfil.php">
         <button type="submit">Mes trajets</button>
 </form>
 
-<p><a href="verifMonProfil.php?"></p>
+<p><a href="verifMonProfil.php"></p>
 </body>
 </html>

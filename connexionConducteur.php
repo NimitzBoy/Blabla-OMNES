@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang= "fr">
+    
 <?php
 require_once("config.php");
 ?>
+
 <html>
 <head>
 <title > BlablaOMNES.com </title >

@@ -1,4 +1,53 @@
 
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background-color: #333;
+    overflow: hidden;
+    width: 5%;
+}
+
+.menu-toggle{
+    background-color: #333;
+    color: white;
+    padding: 14px 16px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%; /* Make button full width */
+    text-align: center; /* Align text to the left */
+}
+
+.menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: none; /* Initially hidden */
+    width: 100%;
+}
+
+.menu > li {
+    display: block;
+}
+
+.menu > li > a {
+    display: block;
+    color: white;
+    text-align: center; /* Align text to the left */
+    padding: 14px 16px;
+    text-decoration: none;
+    background-color: rgb(46, 44, 76);
+}
+
+.menu > li > a:hover {
+    background-color: #111;
+}
+
 .container { 
     display: flex;
     flex-direction: column;
@@ -112,3 +161,4 @@ html, body {
     }
   }
   
+
