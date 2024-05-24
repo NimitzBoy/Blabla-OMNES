@@ -21,15 +21,21 @@ require_once("config.php");
     <div class="header flex justify-between items-center h-24 bg-white bg-no-repeat bg-center bg-[url('Preview.png')] p-1">
         <div class="dropdown relative">
             <button class="buttonMenu bg-purple-700 text-white px-4 py-2 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105">Menu</button>
-            
             <div class="dropdown-content absolute left-0 mt-1 w-48 bg-white shadow-lg rounded-lg flex flex-col items-center">
                 <a href="#" class="py-2 px-4 hover:bg-purple-700 hover:text-white text-center ">Mon profil</a>
                 <br>
                 <a href="#" class="py-2 px-4 hover:bg-purple-700 hover:text-white text-center ">Mes Trajets</a>
             </div>
         </div>
+        <br>
+        <br>
         <img src="Preview.png" alt="Logo" class="h-24">
+        <br>
+        <br>
+        <br>
         <a class="buttonLogin bg-purple-700 text-white px-4 py-2 rounded-lg shadow-lg hover:scale-105"><p>Bienvenue, <?php echo htmlspecialchars($_SESSION['prenom']); ?>!</p></a>
+        <a href="blablaOmnes.php" class="buttonLogin bg-purple-700 text-white px-4 py-2 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105">Déconnexion</a>
+    
     </div>
     <div class="body flex justify-center items-center flex-grow bg-cover bg-fixed bg-center" style="background-image: url('Étretat.jpg');">
         <div class="formulaire-recherche p-9 bg-white shadow-lg rounded-lg flex flex-col w-full max-w-lg md:max-w-2xl lg:max-w-2xl">
