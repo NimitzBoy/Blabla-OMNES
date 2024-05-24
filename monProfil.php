@@ -15,9 +15,19 @@ require_once("config.php");
 
 <body>
 <form method="post" action="verifMonProfil.php">
-        <button type="submit">Mes trajets</button>
+<br>
+Nom:<div><input type="text" name="Nom"><br></div>
+<br>
+Prenom:<div><input type="text" name="Prenom"><br></div>
+<br>
+Type de profil:<div><input type="text" name="Type_de_profil"><br></div>
+<br>
+
+        <form method="post" action="BlablaOmnes.php">
+            
 </form>
 
-<p><a href="verifMonProfil.php"></p>
+        <p><a href="verifMonProfil.php?"></p>
+
 </body>
 </html>
