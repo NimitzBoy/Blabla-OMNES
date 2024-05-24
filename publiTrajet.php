@@ -2,44 +2,68 @@
 <?php
 require_once("config.php");
 ?>
-<html lang= "fr">
-<html>
-    <head>
-        <title > BlablaOMNES.com </title >
-        <meta charset= " UTF-8 ">
-        <link rel= " stylesheet " href= "designCreationCompte.css">
-        <div class= " feetpage ">Publier un nouveau trajet</div >
-    </head>
-    <body>
-        <form method="post" action="AjoutTrajet.php">
-            <br>
-            Adresse de départ:<input type="text" name="Adresse_de_départ"><br>
-            <br>
-            Adresse d'arrivée:<input type="text" name="Adresse_d'arrivée"><br>
-            <br>
-            Date de départ:<input type="date" name="Date_départ"><br>
-            <br>
-            Sélectionnez votre trajet :
-            <div>
-                <input type="radio" name="type_trajet" id="aller" value="Aller" required>
-                <label for="aller">Aller</label>
-                <br>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlablaOMNES.com</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="h-screen w-screen flex flex-col">
+    <div class="header flex justify-center items-center h-30 bg-white bg-no-repeat bg-center bg-[url('Preview.png')] p-9">
+        <h1 class="text-2xl font-bold text-purple-700">Publier un trajet</h1>
+    </div>
+    <div class="body flex justify-center items-center flex-grow bg-cover bg-fixed bg-center" style="background-image: url('Étretat.jpg');">
+            <div class="FormulaireRecherche bg-white p-8 shadow-lg rounded-lg w-full max-w-md">
+            <form method="post" action="AjoutTrajet.php" class="bg-white p-6 rounded-lg shadow-md">
+            <div class="mb-4">
+                <label for="Adresse_de_départ" class="block text-gray-700 font-bold mb-2">Adresse de départ:</label>
+                <input type="text" name="Adresse_de_départ" id="Adresse_de_départ" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
-            <div>
-                <input type="radio" name="type_trajet" id="retour" value="Retour" required>
-                <label for="retour">Retour</label>
-                <br>
+            <div class="mb-4">
+                <label for="Adresse_d'arrivée" class="block text-gray-700 font-bold mb-2">Adresse d'arrivée:</label>
+                <input type="text" name="Adresse_d'arrivée" id="Adresse_d'arrivée" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
-            <div>
-                <input type="radio" name="type_trajet" id="aller_retour" value="Aller et retour" required>
-                <label for="aller_retour">Aller et retour</label>
-                <br>
+            <div class="mb-4">
+                <span class="block text-gray-700 font-bold mb-2">Sélectionnez votre trajet :</span>
+                <div class="flex items-center mb-2">
+                    <input type="checkbox" name="aller" id="aller" class="mr-2 leading-tight">
+                    <label for="aller" class="text-gray-700">Aller</label>
+                </div>
+                <div class="flex items-center mb-2">
+                    <input type="checkbox" name="retour" id="retour" class="mr-2 leading-tight">
+                    <label for="retour" class="text-gray-700">Retour</label>
+                </div>
+                <div class="flex items-center mb-2">
+                    <input type="checkbox" name="Aller_et_retour" id="Aller_et_retour" class="mr-2 leading-tight">
+                    <label for="Aller_et_retour" class="text-gray-700">Aller et retour</label>
+                </div>
             </div>
-            <br>
-            Prix du trajet par personne:<input type="text" name="Prix_du_trajet_par_personne">€<br>
-            <br>
-            <input type="submit" value="Publier un trajet">
+            <div class="mb-4">
+                <label for="Prix_du_trajet_par_personne" class="block text-gray-700 font-bold mb-2">Prix du trajet par personne:</label>
+                <div class="flex items-center">
+                    <input type="text" name="Prix_du_trajet_par_personne" id="Prix_du_trajet_par_personne" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    <span class="ml-2 text-gray-700">€</span>
+                </div>
+            </div>
+            <div class="flex items-center justify-between">
+            <button type="submit" class="bg-purple-700 text-white px-6 py-2 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105">Publier un trajet</button>
+            </div>
         </form>
-        <p><a href="formulaireVerifPubliTrajet.php?"></p>
-    </body>
+        </div>
+
+        </div>
+    </div>
+    <div class="feetpage h-25 w-full bg-purple-700 flex justify-between items-center p-5 box-border">
+        <div class="feetpage-links flex space-x-5">
+            <a href="QuiSommesNous.php" class="text-white">Qui sommes-nous ?</a>
+            <a href="InformationsLegales.php" class="text-white">Informations légales</a>
+            <a href="#" class="text-white">Paramètres des cookies</a>
+        </div>
+        <div class="feetpage-Blablalogo flex items-center space-x-2">
+            <span class="text-white text-sm">BlablaOmnes 2024 &copy;</span>
+            <img src="Preview.png" alt="Logo" class="h-12">
+        </div>
+    </div>
+</body>
 </html>

@@ -19,12 +19,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // l'utilisateur est trouvé -> récupérer les données de l'utilisateur
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($password === $row['mot_de_passe']){
+        if ($email === "mathilde.admin@gmail.com" || $email === "william.admin@gmail.com" || $email === "arnaud.admin@gmail.com" && $password === $row['mot_de_passe']){
+            $_SESSION['user_id'] = $row['id_utilisateur'];
+            $_SESSION['email'] = $row['email'];
+            $_SESSION['prenom'] = $row['prenom'];
+            header("Location: CompteAdministrateur.php");
+        }else if ($password === $row['mot_de_passe']){
             $_SESSION['user_id'] = $row['id_utilisateur'];
             $_SESSION['email'] = $row['email'];
             $_SESSION['prenom'] = $row['prenom'];
             header("Location: BlablaomnesConnecte.php");
-            echo "Mot de passe correct.";
         } else {
             // mot de passe incorrect
             echo "Mot de passe incorrect.";
