@@ -14,7 +14,7 @@
         <div class="w-full max-w-md bg-white p-6 rounded-lg shadow-lg">
             <ul class="space-y-4">
                 <li><a href="afficherTrajetsAdmin.php" class="block bg-purple-700 text-white py-2 px-4 rounded-lg text-center hover:bg-purple-800">Gestion Trajets</a></li>
-                <li><a href="#" class="block bg-purple-700 text-white py-2 px-4 rounded-lg text-center hover:bg-purple-800">Validité Permis de conduire</a></li>
+                <li><a href="validationPermis.php" class="block bg-purple-700 text-white py-2 px-4 rounded-lg text-center hover:bg-purple-800">Validation des Permis de conduire</a></li>
                 <li><a href="afficherUtilisateursAdmin.php" class="block bg-purple-700 text-white py-2 px-4 rounded-lg text-center hover:bg-purple-800">Gestion utilisateurs</a></li>
             </ul>
         </div>
