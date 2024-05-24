@@ -29,7 +29,7 @@ require_once("config.php");
             </div>
         </div>
         <img src="Preview.png" alt="Logo" class="h-24">
-        <p>Bienvenue, <?php echo htmlspecialchars($_SESSION['prenom']); ?>!</p>
+        <a class="buttonLogin bg-purple-700 text-white px-4 py-2 rounded-lg shadow-lg hover:scale-105"><p>Bienvenue, <?php echo htmlspecialchars($_SESSION['prenom']); ?>!</p></a>
     </div>
     <div class="body flex justify-center items-center flex-grow bg-cover bg-fixed bg-center" style="background-image: url('Étretat.jpg');">
         <div class="formulaire-recherche p-9 bg-white shadow-lg rounded-lg flex flex-col w-full max-w-lg md:max-w-2xl lg:max-w-2xl">
