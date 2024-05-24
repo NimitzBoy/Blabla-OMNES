@@ -1,4 +1,3 @@
-
 <!DOCTYPE html >
 <html lang= "fr">
 <link rel= " stylesheet " href= "BlablaOmnes.css">
@@ -14,9 +13,9 @@
     <div class= " body ">
         <div class="FormulaireRecherche">
         <lu>
-            <li><a href="">Ajouter/modifier/supprimer des Campus</a></li>
+            <li><a href="afficherTrajetsAdmin.php">Gestion des trajets</a></li>
             <li><a href="">Validité Permis de conduire</a></li>
-            <li><a href="">Informations personnels Utilisateurs</a></li>
+            <li><a href="afficherUtilisateursAdmin.php">Gestion des Utilisateurs</a></li>
         </lu>
     </div >
 </body>
