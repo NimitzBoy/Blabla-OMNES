@@ -15,7 +15,7 @@ require_once("config.php");
     </div>
     <div class="body flex justify-center items-center flex-grow bg-cover bg-fixed bg-center" style="background-image: url('Étretat.jpg');">
             <div class="FormulaireRecherche bg-white p-8 shadow-lg rounded-lg w-full max-w-md">
-                <form method="post" action="verifConnexionPassager.php" class="flex flex-col space-y-4">
+                <form method="post" action="verifConnexionConducteur.php" class="flex flex-col space-y-4">
                     <input type="text" name="Adresse_mail" placeholder="Mail" required class="p-3 border rounded-lg">
                     <input type="password" name="Mot_de_passe" placeholder="Mot de passe" required class="p-3 border rounded-lg">
                     <button type="submit" class="bg-purple-700 text-white py-3 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105">Valider</button>
@@ -23,7 +23,7 @@ require_once("config.php");
                 <form method="post" action="creationCompte.php" class="mt-4">
                     <button type="submit" class="bg-purple-700 text-white py-3 rounded-lg w-full shadow-lg transform transition-transform duration-200 hover:scale-105">Créer un compte</button>
                 </form>
-                <p class="mt-4"><a href="verifConnexionPassager.php" class="text-purple-700 hover:underline">Mot de passe oublié?</a></p>
+                <p class="mt-4"><a href="verifConnexionConducteur.php" class="text-purple-700 hover:underline">Mot de passe oublié?</a></p>
             </div>
         </div>
 
