@@ -55,13 +55,5 @@ require_once("config.php");
             <img src="Preview.png" alt="Logo" class="h-12">
         </div>
     </div>
-    
 </body>
 </html>
-
-
-
-
-
-
-
