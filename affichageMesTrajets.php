@@ -11,8 +11,8 @@ $id_utilisateur = $_SESSION['user_id'];
 
 // Récupérer les trajets publiés par l'utilisateur
 try {
-    $stmt_publies = $bdd->prepare("SELECT * FROM trajet WHERE id_conducteur = :id_conducteur");
-    $stmt_publies->bindParam(':id_utilisateur', $id_utilisateur);
+    $stmt_publies = $bdd->prepare("SELECT * FROM trajet WHERE conducteur_id = :conducteur_id");
+    $stmt_publies->bindParam(':conducteur_id', $id_utilisateur); // Correction ici
     $stmt_publies->execute();
     $trajets_publies = $stmt_publies->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
@@ -36,7 +36,7 @@ try {
         <div class="bg-white p-8 shadow-lg rounded-lg w-full max-w-4xl">
             <h2 class="text-xl font-bold mb-4">Trajets publiés</h2>
             <div class="mb-8">
-                <?php if (count($trajets_publies) > 0): ?>
+                <?php if (isset($trajets_publies) && count($trajets_publies) > 0): ?> <!-- Vérification si $trajets_publies est défini -->
                     <ul class="list-disc pl-5">
                         <?php foreach ($trajets_publies as $trajet): ?>
                             <li class="mb-2">
@@ -67,3 +67,4 @@ try {
     </div>
 </body>
 </html>
+
