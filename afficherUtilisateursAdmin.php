@@ -23,7 +23,7 @@ require_once("config.php");
         }
     </style>
     <script>
-        function confirmDeletion(userId) { // fonction de suppression des comptes
+        function confirmDeletion(userId) {
             if (confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')) {
                 document.getElementById('deleteForm-' + userId).submit();
             }
@@ -33,22 +33,35 @@ require_once("config.php");
 <body>
     <h1>Liste des Utilisateurs</h1>
     <?php
+    // Liste des emails des administrateurs
+    $adminEmails = ["mathilde.admin@gmail.com", "arnaud.admin@gmail.com", "william.admin@gmail.com"];
     
     // Traitement de la suppression
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_user_id'])) {
         $deleteUserId = $_POST['delete_user_id'];
-        $deleteSql = "DELETE FROM utilisateur WHERE id_utilisateur = :id";
-        $deleteStmt = $bdd->prepare($deleteSql);
-        $deleteStmt->bindParam(':id', $deleteUserId, PDO::PARAM_INT);
-        try {
-            $deleteStmt->execute();
-            echo '<p>Utilisateur supprimé avec succès.</p>';
-        } catch (PDOException $e) {
-            echo '<p>Erreur lors de la suppression de l\'utilisateur: ' . $e->getMessage() . '</p>';
+        // Vérifier si l'utilisateur à supprimer n'est pas un administrateur
+        $checkEmailSql = "SELECT email FROM utilisateur WHERE id_utilisateur = :id";
+        $checkEmailStmt = $bdd->prepare($checkEmailSql);
+        $checkEmailStmt->bindParam(':id', $deleteUserId, PDO::PARAM_INT);
+        $checkEmailStmt->execute();
+        $userEmail = $checkEmailStmt->fetchColumn();
+        
+        if (!in_array($userEmail, $adminEmails)) {
+            $deleteSql = "DELETE FROM utilisateur WHERE id_utilisateur = :id";
+            $deleteStmt = $bdd->prepare($deleteSql);
+            $deleteStmt->bindParam(':id', $deleteUserId, PDO::PARAM_INT);
+            try {
+                $deleteStmt->execute();
+                echo '<p>Utilisateur supprimé avec succès.</p>';
+            } catch (PDOException $e) {
+                echo '<p>Erreur lors de la suppression de l\'utilisateur: ' . $e->getMessage() . '</p>';
+            }
+        } else {
+            echo '<p>Erreur: Impossible de supprimer un compte administrateur.</p>';
         }
     }
 
-    // Requête SQL pour récupérer les utilisateurs
+    // Requête SQL pour récupérer les utilisateurs avec leur photo
     $sql = "SELECT * FROM utilisateur"; 
     try {
         $stmt = $bdd->query($sql);
@@ -56,7 +69,7 @@ require_once("config.php");
         // Vérifier si des utilisateurs sont trouvés
         if ($stmt->rowCount() > 0) {
             echo '<table>';
-            echo '<tr><th>ID</th><th>Nom</th><th>Prénom</th><th>Email</th><th>Mot de passe</th><th>Numero</th></tr>';
+            echo '<tr><th>ID</th><th>Nom</th><th>Prénom</th><th>Email</th><th>Mot de passe</th><th>Numero</th><th>Photo</th><th>Action</th></tr>';
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 echo '<tr>';
                 echo '<td>' . htmlspecialchars($row['id_utilisateur']) . '</td>';
@@ -66,10 +79,23 @@ require_once("config.php");
                 echo '<td>' . htmlspecialchars($row['mot_de_passe']) . '</td>';
                 echo '<td>' . htmlspecialchars($row['numero']) . '</td>';
                 echo '<td>';
-                echo '<form id="deleteForm-' . htmlspecialchars($row['id_utilisateur']) . '" method="POST" style="display:inline;">';
-                echo '<input type="hidden" name="delete_user_id" value="' . htmlspecialchars($row['id_utilisateur']) . '">';
-                echo '<button type="button" onclick="confirmDeletion(' . htmlspecialchars($row['id_utilisateur']) . ')">Supprimer</button>';
-                echo '</form>';
+                // Afficher la photo de l'utilisateur s'il en a une
+                if (!empty($row['photo'])) {
+                    echo '<img src="' . htmlspecialchars($row['photo']) . '" alt="Photo de profil" style="max-width: 100px; max-height: 100px;">';
+                } else {
+                    echo 'Pas de photo';
+                }
+                echo '</td>';
+                echo '<td>';
+                // Vérifier si l'utilisateur n'est pas un administrateur avant d'afficher le bouton de suppression
+                if (!in_array($row['email'], $adminEmails)) {
+                    echo '<form id="deleteForm-' . htmlspecialchars($row['id_utilisateur']) . '" method="POST" style="display:inline;">';
+                    echo '<input type="hidden" name="delete_user_id" value="' . htmlspecialchars($row['id_utilisateur']) . '">';
+                    echo '<button type="button" onclick="confirmDeletion(' . htmlspecialchars($row['id_utilisateur']) . ')">Supprimer</button>';
+                    echo '</form>';
+                } else {
+                    echo 'Administrateur';
+                }
                 echo '</td>';
                 echo '</tr>';
             }
@@ -83,4 +109,5 @@ require_once("config.php");
     ?>
 </body>
 </html>
+
 

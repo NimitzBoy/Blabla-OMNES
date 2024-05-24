@@ -14,34 +14,36 @@ require_once("config.php");
         <h1 class="text-2xl font-bold text-purple-700">Créer un compte</h1>
     </div>
     <div class="body flex justify-center items-center flex-grow bg-cover bg-fixed bg-center" style="background-image: url('Étretat.jpg');">
-            <div class="FormulaireRecherche bg-white p-8 shadow-lg rounded-lg w-full max-w-md">
-            <form method="post" action="AjoutCompte.php" class="space-y-1">
-            <div>
-                <label for="nom" class="block text-sm font-medium text-gray-700">Nom</label>
-                <input type="text" name="nom" id="nom" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg" required>
-            </div>
-            <div>
-                <label for="prenom" class="block text-sm font-medium text-gray-700">Prénom</label>
-                <input type="text" name="prenom" id="prenom" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg" required>
-            </div>
-            <div>
-                <label for="Numero_de_telephone" class="block text-sm font-medium text-gray-700">Numéro de téléphone</label>
-                <input type="text" name="Numero_de_telephone" id="Numero_de_telephone" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg" required>
-            </div>
-            <div>
-                <label for="adresseMail" class="block text-sm font-medium text-gray-700">Adresse mail</label>
-                <input type="email" name="adresseMail" id="adresseMail" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg" required>
-            </div>
-            <div>
-                <label for="motDePasse" class="block text-sm font-medium text-gray-700">Mot de passe</label>
-                <input type="password" name="motDePasse" id="motDePasse" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg" required>
-            </div>
-            <div class="flex justify-center">
-                <button type="submit" class="bg-purple-700 text-white px-6 py-2 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105">Valider</button>
-            </div>
-        </form>
-        </div>
-
+        <div class="FormulaireRecherche bg-white p-8 shadow-lg rounded-lg w-full max-w-md">
+            <form method="post" action="AjoutCompte.php" enctype="multipart/form-data" class="space-y-1">
+                <div>
+                    <label for="nom" class="block text-sm font-medium text-gray-700">Nom</label>
+                    <input type="text" name="nom" id="nom" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg" required>
+                </div>
+                <div>
+                    <label for="prenom" class="block text-sm font-medium text-gray-700">Prénom</label>
+                    <input type="text" name="prenom" id="prenom" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg" required>
+                </div>
+                <div>
+                    <label for="Numero_de_telephone" class="block text-sm font-medium text-gray-700">Numéro de téléphone</label>
+                    <input type="text" name="Numero_de_telephone" id="Numero_de_telephone" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg" required>
+                </div>
+                <div>
+                    <label for="adresseMail" class="block text-sm font-medium text-gray-700">Adresse mail</label>
+                    <input type="email" name="adresseMail" id="adresseMail" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg" required>
+                </div>
+                <div>
+                    <label for="motDePasse" class="block text-sm font-medium text-gray-700">Mot de passe</label>
+                    <input type="password" name="motDePasse" id="motDePasse" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg" required>
+                </div>
+                <div>
+                    <label for="photo" class="block text-sm font-medium text-gray-700">Photo</label>
+                    <input type="file" name="user_photo" id="user_photo" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg" required>
+                </div>
+                <div class="flex justify-center">
+                    <button type="submit" class="bg-purple-700 text-white px-6 py-2 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105">Valider</button>
+                </div>
+            </form>
         </div>
     </div>
     <div class="feetpage h-25 w-full bg-purple-700 flex justify-between items-center p-5 box-border">
