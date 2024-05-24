@@ -22,25 +22,30 @@ require_once("config.php");
         <div class="dropdown relative">
             <button class="buttonMenu bg-purple-700 text-white px-4 py-2 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105">Menu</button>
             <div class="dropdown-content absolute left-0 mt-1 w-48 bg-white shadow-lg rounded-lg flex flex-col items-center">
-                <a href="choixUtilisateur.php" class="py-2 px-4 hover:bg-purple-700 hover:text-white text-center ">Mon profil</a>
+                <a href="monProfil.php" class="py-2 px-4 hover:bg-purple-700 hover:text-white text-center ">Mon profil</a>
                 <br>
-                <a href="choixUtilisateur.php" class="py-2 px-4 hover:bg-purple-700 hover:text-white text-center ">Mes Trajets</a>
+                <a href="affichageMesTrajets.php" class="py-2 px-4 hover:bg-purple-700 hover:text-white text-center ">Mes Trajets</a>
             </div>
         </div>
+        <br>
+        <br>
         <img src="Preview.png" alt="Logo" class="h-24">
-        <a href="choixUtilisateur.php" class="buttonLogin bg-purple-700 text-white px-4 py-2 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105">Connexion</a>
+        <br>
+        <br>
+        <br>
+        <a class="buttonLogin bg-purple-700 text-white px-4 py-2 rounded-lg shadow-lg hover:scale-105"><p>Bienvenue, <?php echo htmlspecialchars($_SESSION['prenom']); ?>!</p></a>
+        <a href="blablaOmnes.php" class="buttonLogin bg-purple-700 text-white px-4 py-2 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105">Déconnexion</a>
+    
     </div>
     <div class="body flex justify-center items-center flex-grow bg-cover bg-fixed bg-center" style="background-image: url('Étretat.jpg');">
         <div class="formulaire-recherche p-9 bg-white shadow-lg rounded-lg flex flex-col w-full max-w-lg md:max-w-2xl lg:max-w-2xl">
-            <form action="" method="post" class="flex flex-col space-y-3">
+            <form action="Affichertrajet.php" method="post" class="flex flex-col space-y-3">
                 <input type="text" name="Lieu Départ" placeholder="Lieu de Départ" class="bg-gray-300 p-2 rounded-lg w-full" required>
                 <input type="text" name="destination" placeholder="Destination" class="bg-gray-300 p-2 rounded-lg w-full" required>
                 <input type="number" name="passagers" placeholder="Nombre de passagers" min="1" class="bg-gray-300 p-2 rounded-lg w-full" required>
                 <input type="date" name="date départ" placeholder="Date de départ" class="bg-gray-300 p-2 rounded-lg w-full" required>
                 <button type="submit" class="bg-purple-700 text-white p-2 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105">Rechercher</button>
             </form>
-            
-            
         </div>
     </div>
     <div class="feetpage h-25 w-full bg-purple-700 flex justify-between items-center p-5 box-border">
@@ -54,5 +59,16 @@ require_once("config.php");
             <img src="Preview.png" alt="Logo" class="h-12">
         </div>
     </div>
+    <script>
+        function checkLoginStatus() {
+            <?php if (!isset($_SESSION['user_id'])): ?>
+                alert("Vous devez être connecté pour rechercher un trajet.");
+                window.location.href = "choixUtilisateur.php";
+                return false;
+            <?php else: ?>
+                return true;
+            <?php endif; ?>
+        }
+    </script>
 </body>
 </html>

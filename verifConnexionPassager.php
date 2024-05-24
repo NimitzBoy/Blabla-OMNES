@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['user_id'] = $row['id_utilisateur'];
             $_SESSION['email'] = $row['email'];
             $_SESSION['prenom'] = $row['prenom'];
-            header("Location: BlablaomnesConnecte.php");
+            header("Location: BlablaOmnesConnectePassager.php");
         } else {
             // mot de passe incorrect
             echo "Mot de passe incorrect.";
