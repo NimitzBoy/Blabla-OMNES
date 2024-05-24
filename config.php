@@ -1,7 +1,7 @@
 <?php
 $Serveur = 'mysql:host=localhost;dbname=blablaomnes'; // creation des données servant pour la connexion de la bdd
 $User = 'root';
-$Pass = ''; 
+$Pass = 'root'; 
 
 try {
     $bdd = new PDO($Serveur, $User, $Pass); // connexion
