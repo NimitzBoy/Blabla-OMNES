@@ -33,7 +33,7 @@ require_once("config.php");
     </div>
     <div class="body flex justify-center items-center flex-grow bg-cover bg-fixed bg-center" style="background-image: url('Étretat.jpg');">
         <div class="formulaire-recherche p-9 bg-white shadow-lg rounded-lg flex flex-col w-full max-w-lg md:max-w-2xl lg:max-w-2xl">
-            <form action="" method="post" class="flex flex-col space-y-3">
+            <form action="Affichertrajet.php" method="post" class="flex flex-col space-y-3">
                 <input type="text" name="Lieu Départ" placeholder="Lieu de Départ" class="bg-gray-300 p-2 rounded-lg w-full" required>
                 <input type="text" name="destination" placeholder="Destination" class="bg-gray-300 p-2 rounded-lg w-full" required>
                 <input type="number" name="passagers" placeholder="Nombre de passagers" min="1" class="bg-gray-300 p-2 rounded-lg w-full" required>

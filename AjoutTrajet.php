@@ -1,10 +1,10 @@
 <?php
 require_once("config.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST["Adresse_de_départ"], $_POST["Adresse_d'arrivée"], $_POST["Prix_du_trajet_par_personne"], $_POST["Date_départ"])){
+    if (isset($_POST["Adresse_de_départ"], $_POST["Adresse_d'arrivée"], $_POST["Prix_du_trajet_par_personne"], $_POST["date_de_depart"])){
         $lieu_depart = $_POST["Adresse_de_départ"];
         $lieu_arrivee = $_POST["Adresse_d'arrivée"];
-        $date_depart = $_POST["Date_départ"];
+        $date_depart = $_POST["date_de_depart"];
         $type_trajet = $_POST["type_trajet"];
         $prix = $_POST["Prix_du_trajet_par_personne"];
         try {
