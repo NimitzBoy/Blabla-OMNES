@@ -22,7 +22,7 @@ Adresse mail:<div><input type="text" name="Adresse_mail"><br></div>
 <br>
 Mot de passe:<div><input type="password" name="Mot_de_passe"><br></div>
 <br>
-        <form method="post" action="BlablaOmnes.html">
+        <form method="post" action="BlablaOmnes.html"> 
             <button type="submit">Valider</button>
 </form>
 <br>
