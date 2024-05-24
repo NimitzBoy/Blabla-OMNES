@@ -1,7 +1,3 @@
-<?php
-require_once("config.php");
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -33,6 +29,8 @@ require_once("config.php");
 <body>
     <h1>Liste des Utilisateurs</h1>
     <?php
+    require_once("config.php");
+
     // Liste des emails des administrateurs
     $adminEmails = ["mathilde.admin@gmail.com", "arnaud.admin@gmail.com", "william.admin@gmail.com"];
     
@@ -61,7 +59,7 @@ require_once("config.php");
         }
     }
 
-    // Requête SQL pour récupérer les utilisateurs avec leur photo
+    // Requête SQL pour récupérer les utilisateurs avec leurs photos et données sur le permis
     $sql = "SELECT * FROM utilisateur"; 
     try {
         $stmt = $bdd->query($sql);
@@ -69,7 +67,7 @@ require_once("config.php");
         // Vérifier si des utilisateurs sont trouvés
         if ($stmt->rowCount() > 0) {
             echo '<table>';
-            echo '<tr><th>ID</th><th>Nom</th><th>Prénom</th><th>Email</th><th>Mot de passe</th><th>Numero</th><th>Photo</th><th>Action</th></tr>';
+            echo '<tr><th>ID</th><th>Nom</th><th>Prénom</th><th>Email</th><th>Mot de passe</th><th>Numero</th><th>Photo</th><th>Photo du permis</th><th>Numero du permis</th><th>Date d\'obtention du permis</th><th>Action</th></tr>';
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 echo '<tr>';
                 echo '<td>' . htmlspecialchars($row['id_utilisateur']) . '</td>';
@@ -79,13 +77,23 @@ require_once("config.php");
                 echo '<td>' . htmlspecialchars($row['mot_de_passe']) . '</td>';
                 echo '<td>' . htmlspecialchars($row['numero']) . '</td>';
                 echo '<td>';
-                // Afficher la photo de l'utilisateur s'il en a une
+                // Afficher la photo de profil de l'utilisateur s'il en a une
                 if (!empty($row['photo'])) {
                     echo '<img src="' . htmlspecialchars($row['photo']) . '" alt="Photo de profil" style="max-width: 100px; max-height: 100px;">';
                 } else {
                     echo 'Pas de photo';
                 }
                 echo '</td>';
+                echo '<td>';
+                // Afficher la photo du permis de l'utilisateur s'il en a une
+                if (!empty($row['photo_permis'])) {
+                    echo '<img src="' . htmlspecialchars($row['photo_permis']) . '" alt="Photo du permis" style="max-width: 100px; max-height: 100px;">';
+                } else {
+                    echo 'Pas de photo';
+                }
+                echo '</td>';
+                echo '<td>' . htmlspecialchars($row['numero_permis']) . '</td>';
+                echo '<td>' . htmlspecialchars($row['date_obtention_permis']) . '</td>';
                 echo '<td>';
                 // Vérifier si l'utilisateur n'est pas un administrateur avant d'afficher le bouton de suppression
                 if (!in_array($row['email'], $adminEmails)) {
@@ -109,5 +117,6 @@ require_once("config.php");
     ?>
 </body>
 </html>
+
 
 

@@ -20,7 +20,7 @@ require_once("config.php");
                     <input type="password" name="Mot_de_passe" placeholder="Mot de passe" required class="p-3 border rounded-lg">
                     <button type="submit" class="bg-purple-700 text-white py-3 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105">Valider</button>
                 </form>
-                <form method="post" action="creationCompte.php" class="mt-4">
+                <form method="post" action="creationCompteConducteur.php" class="mt-4">
                     <button type="submit" class="bg-purple-700 text-white py-3 rounded-lg w-full shadow-lg transform transition-transform duration-200 hover:scale-105">Créer un compte</button>
                 </form>
                 <p class="mt-4"><a href="verifConnexionConducteur.php" class="text-purple-700 hover:underline">Mot de passe oublié?</a></p>
