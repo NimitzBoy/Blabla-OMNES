@@ -55,16 +55,7 @@ require_once("config.php");
             <img src="Preview.png" alt="Logo" class="h-12">
         </div>
     </div>
-    <script>
-        function toggleMenu() {
-            var menu = document.getElementById('menu');
-            if (menu.style.display === 'block' || menu.style.display === '') {
-                menu.style.display = 'none';
-            } else {
-                menu.style.display = 'block';
-            }
-        }
-    </script>
+    
 </body>
 </html>
 
