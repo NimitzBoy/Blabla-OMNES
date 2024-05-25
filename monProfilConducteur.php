@@ -1,7 +1,7 @@
 <?php
 require_once("config.php");
 
-// on vérifie si l'utilisateur est bien connecté
+// On vérifie si l'utilisateur est bien connecté
 if (!isset($_SESSION['user_id'])) {
     header("Location: connexionConducteur.php");
     exit();
@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_id'])) {
 
 $id_utilisateur = $_SESSION['user_id'];
 
-// on récupère les infos de l'utilisateur
+// On récupère les infos de l'utilisateur
 try {
     $stmt_profil = $bdd->prepare("SELECT * FROM utilisateur WHERE id_utilisateur = :id_utilisateur");
     $stmt_profil->bindParam(':id_utilisateur', $id_utilisateur);
@@ -19,18 +19,19 @@ try {
     echo 'ERREUR : ' . $e->getMessage();
 }
 
-//affichage des images
+// Fonction pour afficher les images depuis les données binaires
 function afficherImage($data) {
     if ($data) {
         $base64 = base64_encode($data);
         return 'data:image/jpeg;base64,' . $base64;
     } else {
-        //si pas d'image:
-        return 'aucune image';
+        // Si pas d'image:
+        return '';
     }
 }
 
-
+// Chemin vers l'image locale
+$cheminImagePermis = '/mnt/data/permisTest.jpeg';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -62,25 +63,35 @@ function afficherImage($data) {
                     <p><strong>Date d'obtention du permis:</strong> <?php echo htmlspecialchars($profil['date_obtention_permis']); ?></p>
                     <p><strong>Validation permis:</strong> <?php echo htmlspecialchars($profil['validation_permis'] ? 'Validé' : 'Non validé'); ?></p>
                 
-                     <!-- affichage des photos -->
-                     <div class="mt-4">
+                    <!-- affichage des photos -->
+                    <div class="mt-4">
                         <h3 class="text-lg font-bold">Photo de Profil</h3>
-                        <img src="<?php echo afficherImage($profil['photo']); ?>" alt="Photo" class="w-32 h-32 object-cover rounded-full">
+                        <?php
+                        $photo_profil_src = afficherImage($profil['photo']);
+                        if ($photo_profil_src !== '') {
+                            echo '<img src="' . $photo_profil_src . '" alt="Photo de Profil" class="w-full sm:w-48 md:w-56 lg:w-64 max-h-24 object-cover rounded-full">';
+                        } else {
+                            echo '<span class="text-gray-500">Pas de photo</span>';
+                        }
+                        ?>
                     </div>
                     <div class="mt-4">
                         <h3 class="text-lg font-bold">Photo de Permis</h3>
-                        <img src="<?php echo afficherImage($profil['photo_permis']); ?>" alt="Photo de Permis" class="w-32 h-32 object-cover rounded">
+                        <?php
+                        if (file_exists($cheminImagePermis)) {
+                            echo '<img src="' . $cheminImagePermis . '" alt="Photo de Permis" class="w-full sm:w-48 md:w-56 lg:w-64 max-h-24 object-cover rounded">';
+                        } else {
+                            echo '<span class="text-gray-500">Pas de photo</span>';
+                        }
+                        ?>
                     </div>
-                   
                 <?php else: ?>
-
                     <!-- si infos pas dispos -->
                     <p>Informations de profil non disponibles.</p>
                 <?php endif; ?>
             </div>
         </div>
     </div>
-
 
     <!-- bas de page -->
     <div class="feetpage h-25 w-full bg-purple-700 flex justify-between items-center p-5 box-border">
