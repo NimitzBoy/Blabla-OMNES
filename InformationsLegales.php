@@ -1,20 +1,27 @@
 <!DOCTYPE html>
+
 <html lang="fr">
+
 <?php
 require_once("config.php");
 ?>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mentions Légales - Site de Covoiturage</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
+
+
 <body class="bg-gray-100 p-5">
     <div class="container mx-auto bg-white p-8 rounded-lg shadow-lg max-w-4xl">
         <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Mentions Légales</h1>
         
         <h2 class="text-2xl font-semibold text-gray-800 mb-4">1. Identification de l'Éditeur du Site</h2>
         <p class="text-gray-700 leading-relaxed mb-6">
+
+            <!-- caractéristiques -->
             <strong>Nom de l'entreprise :</strong> BlablaOMNES<br>
             <strong>Forme juridique :</strong> Société par actions simplifiée (SAS)<br>
             <strong>Capital social :</strong> 15 850€<br>
@@ -25,6 +32,8 @@ require_once("config.php");
             <strong>Contact :</strong> william.richard@edu.ece.fr, 06 51 47 32 24
         </p>
         
+
+        <!-- hébergement site -->
         <h2 class="text-2xl font-semibold text-gray-800 mb-4">2. Hébergement du Site</h2>
         <p class="text-gray-700 leading-relaxed mb-6">
             <strong>Nom de l'hébergeur :</strong> localhost<br>
@@ -37,6 +46,8 @@ require_once("config.php");
             Tout le contenu présent sur ce site, incluant, de façon non limitative, les graphismes, images, textes, vidéos, animations, sons, logos, gifs et icônes ainsi que leur mise en forme sont la propriété exclusive de BlablaOMNES à l'exception des marques, logos ou contenus appartenant à d'autres sociétés partenaires ou auteurs.
         </p>
         
+
+        <!-- conditions générales d'utilisation -->
         <h2 class="text-2xl font-semibold text-gray-800 mb-4">4. Conditions Générales d'Utilisation (CGU)</h2>
         <p class="text-gray-700 leading-relaxed mb-4">Les CGU doivent détailler les règles d'utilisation du site, y compris :</p>
         <ul class="list-disc list-inside text-gray-700 mb-6">

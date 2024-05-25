@@ -22,13 +22,16 @@ require_once("config.php");
             background-color: #f2f2f2;
         }
     </style>
+
     <script>
-        function confirmDeletion(trajetId) { // fonction de suppression pour les tajets 
+        // fonction de suppression pour les tajets 
+        function confirmDeletion(trajetId) { 
             if (confirm('Êtes-vous sûr de vouloir supprimer ce trajet ?')) {
                 document.getElementById('deleteForm-' + trajetId).submit();
             }
         }
     </script>
+    
 </head>
 <body>
     <h1>Liste des Trajets</h1>

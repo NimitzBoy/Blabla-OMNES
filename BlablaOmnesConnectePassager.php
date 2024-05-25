@@ -1,13 +1,17 @@
 <!DOCTYPE html>
+
 <?php
 require_once("config.php");
 ?>
+
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BlablaOMNES.com</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
     <style>
         .dropdown-content {
             display: none;
@@ -16,7 +20,10 @@ require_once("config.php");
             display: block;
         }
     </style>
+
 </head>
+
+<!-- haut de page -->
 <body class="h-screen w-screen flex flex-col">
     <div class="header flex justify-between items-center h-24 bg-white bg-no-repeat bg-center bg-[url('Preview.png')] p-1">
         <div class="dropdown relative">
@@ -37,6 +44,9 @@ require_once("config.php");
         <a href="blablaOmnes.php" class="buttonLogin bg-purple-700 text-white px-4 py-2 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105">Déconnexion</a>
     
     </div>
+
+
+    <!-- formulaire recherche trajet -->
     <div class="body flex justify-center items-center flex-grow bg-cover bg-fixed bg-center" style="background-image: url('Étretat.jpg');">
         <div class="formulaire-recherche p-9 bg-white shadow-lg rounded-lg flex flex-col w-full max-w-lg md:max-w-2xl lg:max-w-2xl">
             <form action="Affichertrajet.php" method="post" class="flex flex-col space-y-3">
@@ -48,6 +58,8 @@ require_once("config.php");
             </form>
         </div>
     </div>
+
+    <!-- bas de page -->
     <div class="feetpage h-25 w-full bg-purple-700 flex justify-between items-center p-5 box-border">
         <div class="feetpage-links flex space-x-5">
             <a href="QuiSommesNous.php" class="text-white">Qui sommes-nous ?</a>
@@ -59,6 +71,8 @@ require_once("config.php");
             <img src="Preview.png" alt="Logo" class="h-12">
         </div>
     </div>
+
+    <!-- js qui permet de vérifier que l'utilisateur est bien connecté pour rechercher un trajet -->
     <script>
         function checkLoginStatus() {
             <?php if (!isset($_SESSION['user_id'])): ?>
@@ -70,5 +84,6 @@ require_once("config.php");
             <?php endif; ?>
         }
     </script>
+    
 </body>
 </html>

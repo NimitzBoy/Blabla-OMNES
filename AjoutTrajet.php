@@ -1,7 +1,11 @@
 <?php
 require_once("config.php");
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
     if (isset($_POST["Adresse_de_départ"], $_POST["Adresse_d'arrivée"], $_POST["Prix_du_trajet_par_personne"], $_POST["date_de_depart"], $_POST["type_trajet"])){
+        
         // Récupérer l'ID de l'utilisateur connecté depuis la session
         if (isset($_SESSION['user_id'])) {
             $conducteur_id = $_SESSION['user_id'];

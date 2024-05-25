@@ -22,13 +22,16 @@ require_once("config.php");
             background-color: #f2f2f2;
         }
     </style>
+
     <script>
-        function confirmDeletion(userId) { // fonction de suppression des comptes
+        // fonction de suppression des comptes
+        function confirmDeletion(userId) { 
             if (confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')) {
                 document.getElementById('deleteForm-' + userId).submit();
             }
         }
     </script>
+    
 </head>
 <body>
     <h1>Liste des Utilisateurs</h1>

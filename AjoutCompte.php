@@ -1,7 +1,9 @@
 <?php
 require_once("config.php");
 
-function endsWith($string, $endString) { // fonction qui permet de comparer la fin des adresses mails
+
+// fonction qui permet de comparer la fin des adresses mails
+function endsWith($string, $endString) { 
     $len = strlen($endString);
     if ($len == 0) {
         return true;

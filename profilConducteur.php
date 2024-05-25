@@ -1,18 +1,27 @@
 <!DOCTYPE html>
+
 <?php
 require_once("config.php");
 ?>
+
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BlablaOMNES.com</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
+
+
 <body class="h-screen w-screen flex flex-col">
     <div class="header flex justify-center items-center h-30 bg-white bg-no-repeat bg-center bg-[url('Preview.png')] p-9">
+
+        <!-- créer profil conducteur si besoin -->
         <h1 class="text-2xl font-bold text-purple-700">Créer un profil conducteur</h1>
     </div>
+
+    <!-- formulaire profil conducteur avec ttes infos -->
     <div class="body flex justify-center items-center flex-grow bg-cover bg-fixed bg-center" style="background-image: url('Étretat.jpg');">
         <div class="FormulaireRecherche bg-white p-8 shadow-lg rounded-lg w-full max-w-sm">
             <form method="post" action="formulaireVerifProfilConducteur.php" class="space-y-4">
@@ -46,6 +55,9 @@ require_once("config.php");
             </form>
         </div>
     </div>
+
+
+    <!-- bas de page -->
     <div class="feetpage h-25 w-full bg-purple-700 flex justify-between items-center p-5 box-border">
         <div class="feetpage-links flex space-x-5">
             <a href="QuiSommesNous.php" class="text-white">Qui sommes-nous ?</a>

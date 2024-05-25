@@ -3,11 +3,14 @@
 require_once("config.php");
 ?>
 <html lang="fr">
+
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BlablaOMNES.com</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
     <style>
         .dropdown-content {
             display: none;
@@ -16,7 +19,10 @@ require_once("config.php");
             display: block;
         }
     </style>
+
 </head>
+
+<!-- haut de page -->
 <body class="h-screen w-screen flex flex-col">
     <div class="header flex justify-between items-center h-24 bg-white bg-no-repeat bg-center bg-[url('Preview.png')] p-1">
         <div class="dropdown relative">
@@ -33,11 +39,17 @@ require_once("config.php");
         <br>
         <br>
         <br>
+
+        <!-- on récupère l'identifiant de l'utilisateur et on l'affiche après bonjour -->
         <a class="buttonLogin bg-purple-700 text-white px-4 py-2 rounded-lg shadow-lg hover:scale-105"><p>Bienvenue, <?php echo htmlspecialchars($_SESSION['prenom']); ?>!</p></a>
+
+        <!-- bouton déconnexion -->
         <a href="blablaOmnes.php" class="buttonLogin bg-purple-700 text-white px-4 py-2 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105">Déconnexion</a>
     
     </div>
     <div class="body flex justify-center items-center flex-grow bg-cover bg-fixed bg-center" style="background-image: url('Étretat.jpg');">
+
+        <!-- formulaire recherche trajet -->
         <div class="formulaire-recherche p-9 bg-white shadow-lg rounded-lg flex flex-col w-full max-w-lg md:max-w-2xl lg:max-w-2xl">
             <form action="Affichertrajet.php" method="post" class="flex flex-col space-y-3">
                 <input type="text" name="Lieu Départ" placeholder="Lieu de Départ" class="bg-gray-300 p-2 rounded-lg w-full" required>
@@ -46,11 +58,15 @@ require_once("config.php");
                 <input type="date" name="date départ" placeholder="Date de départ" class="bg-gray-300 p-2 rounded-lg w-full" required>
                 <button type="submit" class="bg-purple-700 text-white p-2 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105">Rechercher</button>
             </form>
+
+            <!-- bouton publier un trajet psq le conducteur est bien connecté -->
             <form action="publiTrajet.php" method="post" class="mt-4">
                 <button type="submit" class="bg-purple-700 text-white p-3 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105">Publier un trajet</button>
             </form>
         </div>
     </div>
+
+    <!-- bas de page -->
     <div class="feetpage h-25 w-full bg-purple-700 flex justify-between items-center p-5 box-border">
         <div class="feetpage-links flex space-x-5">
             <a href="QuiSommesNous.php" class="text-white">Qui sommes-nous ?</a>
@@ -62,6 +78,9 @@ require_once("config.php");
             <img src="Preview.png" alt="Logo" class="h-12">
         </div>
     </div>
+
+
+    <!-- js qui permet de vérifier que l'utilisateur est bien login pour rechercher un trajet -->
     <script>
         function checkLoginStatus() {
             <?php if (!isset($_SESSION['user_id'])): ?>
@@ -73,5 +92,7 @@ require_once("config.php");
             <?php endif; ?>
         }
     </script>
+
+
 </body>
 </html>
