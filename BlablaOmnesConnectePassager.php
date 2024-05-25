@@ -29,7 +29,7 @@ require_once("config.php");
         <div class="dropdown relative">
             <button class="buttonMenu bg-purple-700 text-white px-4 py-2 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105">Menu</button>
             <div class="dropdown-content absolute left-0 mt-1 w-48 bg-white shadow-lg rounded-lg flex flex-col items-center">
-                <a href="monProfil.php" class="py-2 px-4 hover:bg-purple-700 hover:text-white text-center ">Mon profil</a>
+                <a href="monProfilPassager.php" class="py-2 px-4 hover:bg-purple-700 hover:text-white text-center ">Mon profil</a>
                 <br>
                 <a href="affichageMesTrajets.php" class="py-2 px-4 hover:bg-purple-700 hover:text-white text-center ">Mes Trajets</a>
             </div>
