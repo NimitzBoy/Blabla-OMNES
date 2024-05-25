@@ -1,27 +1,21 @@
 <!DOCTYPE html>
-
 <?php
 require_once("config.php");
 ?>
-
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BlablaOMNES.com</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-
-
-<!-- formulaire de création de compte -->
 <body class="h-screen w-screen flex flex-col">
     <div class="header flex justify-center items-center h-30 bg-white bg-no-repeat bg-center bg-[url('Preview.png')] p-9">
         <h1 class="text-2xl font-bold text-purple-700">Créer un compte</h1>
     </div>
     <div class="body flex justify-center items-center flex-grow bg-cover bg-fixed bg-center" style="background-image: url('Étretat.jpg');">
         <div class="FormulaireRecherche bg-white p-8 shadow-lg rounded-lg w-full max-w-md">
-            <form method="post" action="AjoutCompte.php" enctype="multipart/form-data" class="space-y-1">
+            <form method="post" action="AjoutCompteConducteur.php" enctype="multipart/form-data" class="space-y-1">
                 <div>
                     <label for="nom" class="block text-sm font-medium text-gray-700">Nom</label>
                     <input type="text" name="nom" id="nom" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg" required>
@@ -46,14 +40,24 @@ require_once("config.php");
                     <label for="photo" class="block text-sm font-medium text-gray-700">Photo</label>
                     <input type="file" name="user_photo" id="user_photo" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg" required>
                 </div>
+                <div>
+                    <label for="photo_permis" class="block text-sm font-medium text-gray-700">Photo du Permis</label>
+                    <input type="file" name="photo_permis" id="photo_permis" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg" required>
+                </div>
+                <div>
+                    <label for="Numero_du_permis" class="block text-sm font-medium text-gray-700">Numéro de votre permis</label>
+                    <input type="text" name="Numero_du_permis" id="Numero_du_permis" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg" required>
+                </div>
+                <div>
+                    <label for="date_obtention_permis" class="block text-sm font-medium text-gray-700">Date d'obtention du permis:</label>
+                    <input type="date" name="date_obtention_permis" id="date_obtention_permis" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg" required>
+                </div>
                 <div class="flex justify-center">
                     <button type="submit" class="bg-purple-700 text-white px-6 py-2 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105">Valider</button>
                 </div>
             </form>
         </div>
     </div>
-
-    <!-- bas de page -->
     <div class="feetpage h-25 w-full bg-purple-700 flex justify-between items-center p-5 box-border">
         <div class="feetpage-links flex space-x-5">
             <a href="QuiSommesNous.php" class="text-white">Qui sommes-nous ?</a>

@@ -62,6 +62,12 @@ require_once("config.php");
                         <span class="ml-2 text-gray-700">€</span>
                     </div>
                 </div>
+                <div class="mb-4">
+                    <label for="Prix_du_trajet_par_personne" class="block text-gray-700 font-bold mb-2">Nombre de places disponibles:</label>
+                    <div class="flex items-center">
+                        <input type="text" name="places_dispo" id="places_dispo" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+                </div>
                 <div class="flex items-center justify-between">
                     <!-- bouton publication -->
                     <button type="submit" class="bg-purple-700 text-white px-6 py-2 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105">Publier un trajet</button>
