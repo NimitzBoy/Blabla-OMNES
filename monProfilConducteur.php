@@ -1,37 +1,41 @@
 <?php
 require_once("config.php");
 
-// On vérifie si l'utilisateur est bien connecté
+// on vérifie que l'utilisateur soit bien connecté
 if (!isset($_SESSION['user_id'])) {
-    header("Location: connexionConducteur.php");
+    header("Location: connexionPassager.php");
     exit();
 }
 
 $id_utilisateur = $_SESSION['user_id'];
 
-// On récupère les infos de l'utilisateur
+// on récupère les infos de l'utilisateur
 try {
     $stmt_profil = $bdd->prepare("SELECT * FROM utilisateur WHERE id_utilisateur = :id_utilisateur");
     $stmt_profil->bindParam(':id_utilisateur', $id_utilisateur);
     $stmt_profil->execute();
     $profil = $stmt_profil->fetch(PDO::FETCH_ASSOC);
+
+    // Si l'utilisateur n'a pas de portefeuille, on initialise à 0
+    if ($profil && $profil['wallet'] === null) {
+        $profil['wallet'] = 0;
+    }
+
+    // Si le formulaire est soumis, on traite l'ajout au solde
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['montant'])) {
+        $montant = floatval($_POST['montant']);
+        if ($montant > 0) {
+            $nouveau_solde = $profil['wallet'] + $montant;
+            $stmt_update = $bdd->prepare("UPDATE utilisateur SET wallet = :wallet WHERE id_utilisateur = :id_utilisateur");
+            $stmt_update->bindParam(':wallet', $nouveau_solde);
+            $stmt_update->bindParam(':id_utilisateur', $id_utilisateur);
+            $stmt_update->execute();
+            $profil['wallet'] = $nouveau_solde; // Mettre à jour le profil localement
+        }
+    }
 } catch (PDOException $e) {
     echo 'ERREUR : ' . $e->getMessage();
 }
-
-// Fonction pour afficher les images depuis les données binaires
-function afficherImage($data) {
-    if ($data) {
-        $base64 = base64_encode($data);
-        return 'data:image/jpeg;base64,' . $base64;
-    } else {
-        // Si pas d'image:
-        return '';
-    }
-}
-
-// Chemin vers l'image locale
-$cheminImagePermis = '/mnt/data/permisTest.jpeg';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -43,7 +47,6 @@ $cheminImagePermis = '/mnt/data/permisTest.jpeg';
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
-<!-- design haut de page et photo -->
 <body class="h-screen w-screen flex flex-col">
     <div class="header flex justify-center items-center h-30 bg-white bg-no-repeat bg-center bg-[url('Preview.png')] p-9">
         <h1 class="text-2xl font-bold text-purple-700">Mon Profil</h1>
@@ -54,39 +57,36 @@ $cheminImagePermis = '/mnt/data/permisTest.jpeg';
             <h2 class="text-xl font-bold mb-4">Profil de l'utilisateur</h2>
             <div class="mb-8">
                 <?php if (isset($profil)): ?>
-                    <!-- infos de l'utilisateur -->
+                    <!-- infos utilisateur -->
                     <p><strong>Nom:</strong> <?php echo htmlspecialchars($profil['nom']); ?></p>
                     <p><strong>Prénom:</strong> <?php echo htmlspecialchars($profil['prenom']); ?></p>
                     <p><strong>Email:</strong> <?php echo htmlspecialchars($profil['email']); ?></p>
                     <p><strong>Numéro:</strong> <?php echo htmlspecialchars($profil['numero']); ?></p>
-                    <p><strong>Numéro de permis:</strong> <?php echo htmlspecialchars($profil['numero_permis']); ?></p>
-                    <p><strong>Date d'obtention du permis:</strong> <?php echo htmlspecialchars($profil['date_obtention_permis']); ?></p>
-                    <p><strong>Validation permis:</strong> <?php echo htmlspecialchars($profil['validation_permis'] ? 'Validé' : 'Non validé'); ?></p>
-                
-                    <!-- affichage des photos -->
+
+                    <!-- affichage de la photo -->
                     <div class="mt-4">
                         <h3 class="text-lg font-bold">Photo de Profil</h3>
-                        <?php
-                        $photo_profil_src = afficherImage($profil['photo']);
-                        if ($photo_profil_src !== '') {
-                            echo '<img src="' . $photo_profil_src . '" alt="Photo de Profil" class="w-full sm:w-48 md:w-56 lg:w-64 max-h-24 object-cover rounded-full">';
-                        } else {
-                            echo '<span class="text-gray-500">Pas de photo</span>';
-                        }
-                        ?>
+                        <?php if (!empty($profil['photo'] && $profil['photo_permis'])): ?>
+                            <p><strong>Photo du profil:</strong> <img src="<?php echo htmlspecialchars($profil['photo']); ?>" alt="Photo du Profil" class="w-48 h-48 object-cover rounded"></p>
+                            <p><strong>Photo du Permis:</strong> <img src="<?php echo htmlspecialchars($profil['photo_permis']); ?>" alt="Photo du Permis" class="w-48 h-48 object-cover rounded"></p>
+                        <?php else: ?>
+                            <p>Aucune photo de profil disponible.</p>
+                        <?php endif; ?>
                     </div>
-                    <div class="mt-4">
-                        <h3 class="text-lg font-bold">Photo de Permis</h3>
-                        <?php
-                        if (file_exists($cheminImagePermis)) {
-                            echo '<img src="' . $cheminImagePermis . '" alt="Photo de Permis" class="w-full sm:w-48 md:w-56 lg:w-64 max-h-24 object-cover rounded">';
-                        } else {
-                            echo '<span class="text-gray-500">Pas de photo</span>';
-                        }
-                        ?>
+                    <br>
+                    <!-- Portefeuille de l'utilisateur -->
+                    <h2 class="text-xl font-bold mb-4">Mon Portefeuille</h2>
+                    <div class="mb-8">
+                        <p><strong>Solde:</strong> <?php echo htmlspecialchars($profil['wallet']); ?> €</p>
                     </div>
+
+                    <!-- Formulaire pour augmenter le solde -->
+                    <form method="post" action="AjoutWallet.php">
+                        <input type="hidden" name="id_utilisateur" value="<?php echo $id_utilisateur; ?>">
+                        <input type="number" name="montant" id="montant" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" min="0.01" step="0.01" required>
+                        <button type="submit" class="mt-2 bg-purple-700 text-white px-4 py-2 rounded">Ajouter</button>
+                    </form>
                 <?php else: ?>
-                    <!-- si infos pas dispos -->
                     <p>Informations de profil non disponibles.</p>
                 <?php endif; ?>
             </div>

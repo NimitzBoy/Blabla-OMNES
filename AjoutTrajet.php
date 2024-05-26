@@ -21,50 +21,61 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Si le permis est validé (validation_permis = 1)
         else {
             // Vérifier les données du formulaire et insérer le trajet si tout est valide
-            if (isset($_POST["Adresse_de_départ"], $_POST["Adresse_d'arrivée"], $_POST["Prix_du_trajet_par_personne"], $_POST["date_de_depart"], $_POST["type_trajet"], $_POST["places_dispo"])) {
+            if (isset($_POST["Adresse_de_départ"], $_POST["Adresse_d'arrivée"], $_POST["Prix_du_trajet_par_personne"], $_POST["date_de_depart"], $_POST["type_trajet"], $_POST["places_dispo"], $_FILES["photo_vehicule"], $_POST["preferences_conducteur"])) {
                 $lieu_depart = $_POST["Adresse_de_départ"];
                 $lieu_arrivee = $_POST["Adresse_d'arrivée"];
                 $date_depart = $_POST["date_de_depart"];
                 $type_trajet = $_POST["type_trajet"];
                 $prix = $_POST["Prix_du_trajet_par_personne"];
                 $places_disponibles = $_POST["places_dispo"];
+                $preference_conducteur = $_POST["preferences_conducteur"];
+                
+                // Traitement de l'upload de la photo
+                $photo_vehicule_tmp = $_FILES["photo_vehicule"]["tmp_name"]; // Chemin temporaire du fichier téléchargé
+                $photo_vehicule = "uploads/" . basename($_FILES["photo_vehicule"]["name"]); // Chemin de destination du fichier téléchargé
 
-                // Récupérer les noms des campus depuis la base de données
-                $campus = getCampusList();
-
-                // Vérifier si l'adresse de départ ou d'arrivée contient un campus
-                $depart_ou_arrivee_contient_campus = false;
-
-                foreach ($campus as $camp) {
-                    if (stripos($lieu_depart, $camp) !== false || stripos($lieu_arrivee, $camp) !== false) {
-                        $depart_ou_arrivee_contient_campus = true;
-                        break;
-                    }
-                }
-                //on verifie qu'au moins le depart ou l'arrivée contiennent bien un campus
-                if ($depart_ou_arrivee_contient_campus) {
-                    try {
-                        $stmt = $bdd->prepare("INSERT INTO trajet (lieu_depart, lieu_arrivee, prix, date_depart, type_trajet, conducteur_id, places_disponibles) VALUES (:lieu_depart, :lieu_arrivee, :prix, :date_depart, :type_trajet, :conducteur_id, :places_disponibles)");
-                        $stmt->bindParam(':lieu_depart', $lieu_depart);
-                        $stmt->bindParam(':lieu_arrivee', $lieu_arrivee);
-                        $stmt->bindParam(':date_depart', $date_depart);
-                        $stmt->bindParam(':prix', $prix);
-                        $stmt->bindParam(':type_trajet', $type_trajet);
-                        $stmt->bindParam(':conducteur_id', $conducteur_id);
-                        $stmt->bindParam(':places_disponibles', $places_disponibles);
-                        if ($stmt->execute()) {
-                            echo 'Trajet ajouté avec succès.';
+                // Vérification si l'image est bien un fichier image
+                $check = getimagesize($photo_vehicule_tmp);
+                if ($check !== false) {
+                    // Vérifier la taille du fichier
+                    if ($_FILES["photo_vehicule"]["size"] > 500000) { // 500 KB
+                        echo "Désolé, votre fichier est trop volumineux.";
+                    } else {
+                        // Autoriser certains formats de fichier
+                        $imageFileType = strtolower(pathinfo($photo_vehicule, PATHINFO_EXTENSION));
+                        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+                            echo "Désolé, seuls les fichiers JPG, JPEG, PNG et GIF sont autorisés.";
                         } else {
-                            echo 'Erreur lors de l\'ajout du trajet. Veuillez réessayer.';
+                            // Déplacer le fichier téléchargé vers le répertoire de destination
+                            if (move_uploaded_file($photo_vehicule_tmp, $photo_vehicule)) {
+                                // Insertion du trajet dans la base de données
+                                try {
+                                    $stmt = $bdd->prepare("INSERT INTO trajet (lieu_depart, lieu_arrivee, prix, date_depart, type_trajet, conducteur_id, places_disponibles, photo_vehicule, preference_conducteur) VALUES (:lieu_depart, :lieu_arrivee, :prix, :date_depart, :type_trajet, :conducteur_id, :places_disponibles, :photo_vehicule, :preference_conducteur)");
+                                    $stmt->bindParam(':lieu_depart', $lieu_depart);
+                                    $stmt->bindParam(':lieu_arrivee', $lieu_arrivee);
+                                    $stmt->bindParam(':date_depart', $date_depart);
+                                    $stmt->bindParam(':prix', $prix);
+                                    $stmt->bindParam(':type_trajet', $type_trajet);
+                                    $stmt->bindParam(':conducteur_id', $conducteur_id);
+                                    $stmt->bindParam(':places_disponibles', $places_disponibles);
+                                    $stmt->bindParam(':photo_vehicule', $photo_vehicule);
+                                    $stmt->bindParam(':preference_conducteur', $preference_conducteur);
+                                    if ($stmt->execute()) {
+                                        echo 'Trajet ajouté avec succès.';
+                                        header("Location: BlablaomnesConnecteConducteur.php");
+                                    } else {
+                                        echo 'Erreur lors de l\'ajout du trajet. Veuillez réessayer.';
+                                    }
+                                } catch (PDOException $e) {
+                                    echo 'ERREUR : ' . $e->getMessage();
+                                }
+                            } else {
+                                echo "Désolé, une erreur s'est produite lors du téléchargement de votre fichier.";
+                            }
                         }
-                    } catch (PDOException $e) {
-                        echo 'ERREUR : ' . $e->getMessage();
                     }
                 } else {
-                    // si le trajet ne contient aucun campus: message d'erreur
-                    echo 'Le départ ou l\'arrivée doivent au moins contenir un campus.<br><br>';
-                    
-                    echo 'Exemples de campus: Lyon, Paris, Eiffel, Citroen...';
+                    echo "Le fichier n'est pas une image.";
                 }
             }
         }
@@ -113,3 +124,9 @@ function getCampusList()
     return $campus;
 }
 ?>
+
+
+
+
+
+

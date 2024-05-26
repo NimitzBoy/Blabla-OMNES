@@ -15,6 +15,12 @@ try {
     $stmt_publies->bindParam(':conducteur_id', $id_utilisateur); // Correction ici
     $stmt_publies->execute();
     $trajets_publies = $stmt_publies->fetchAll(PDO::FETCH_ASSOC);
+
+    // Récupérer les trajets réservés par l'utilisateur
+    $stmt_reserves = $bdd->prepare("SELECT * FROM trajet WHERE passager_id = :passager_id");
+    $stmt_reserves->bindParam(':passager_id', $id_utilisateur);
+    $stmt_reserves->execute();
+    $trajets_reserves = $stmt_reserves->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     echo 'ERREUR : ' . $e->getMessage();
 }
@@ -39,30 +45,47 @@ try {
         <div class="bg-white p-8 shadow-lg rounded-lg w-full max-w-4xl">
             <h2 class="text-xl font-bold mb-4">Trajets publiés</h2>
             <div class="mb-8">
-
-            <!-- on vérifie si trajets publies est défini -->
+                <!-- on vérifie si trajets publies est défini -->
                 <?php if (isset($trajets_publies) && count($trajets_publies) > 0): ?> 
                     <ul class="list-disc pl-5">
                         <?php foreach ($trajets_publies as $trajet): ?>
-
                             <li class="mb-2">
-                                <!-- affichage des trajets avec tte les caractéristiques -->
+                                <!-- affichage des trajets avec toutes les caractéristiques -->
                                 <p>Adresse de départ: <?php echo htmlspecialchars($trajet['lieu_depart']); ?></p>
                                 <p>Adresse d'arrivée: <?php echo htmlspecialchars($trajet['lieu_arrivee']); ?></p>
                                 <p>Date de départ: <?php echo htmlspecialchars($trajet['date_depart']); ?></p>
                                 <p>Prix du trajet par personne: <?php echo htmlspecialchars($trajet['prix']); ?> €</p>
                                 <p>Type: <?php echo htmlspecialchars($trajet['type_trajet']); ?></p>
                             </li>
-
                         <?php endforeach; ?>
                     </ul>
                 <?php else: ?>
                     <p>Aucun trajet publié.</p>
                 <?php endif; ?>
             </div>
+
+            <!-- Section des trajets réservés -->
+            <h2 class="text-xl font-bold mb-4">Trajets réservés</h2>
+            <div class="mb-8">
+                <?php if (isset($trajets_reserves) && count($trajets_reserves) > 0): ?> 
+                    <ul class="list-disc pl-5">
+                        <?php foreach ($trajets_reserves as $trajet): ?>
+                            <li class="mb-2">
+                                <!-- affichage des trajets réservés avec toutes les caractéristiques -->
+                                <p>Adresse de départ: <?php echo htmlspecialchars($trajet['lieu_depart']); ?></p>
+                                <p>Adresse d'arrivée: <?php echo htmlspecialchars($trajet['lieu_arrivee']); ?></p>
+                                <p>Date de départ: <?php echo htmlspecialchars($trajet['date_depart']); ?></p>
+                                <p>Prix du trajet par personne: <?php echo htmlspecialchars($trajet['prix']); ?> €</p>
+                                <p>Type: <?php echo htmlspecialchars($trajet['type_trajet']); ?></p>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php else: ?>
+                    <p>Aucun trajet réservé.</p>
+                <?php endif; ?>
+            </div>
         </div>
     </div>
-
 
     <!-- bas de page -->
     <div class="feetpage h-25 w-full bg-purple-700 flex justify-between items-center p-5 box-border">
@@ -79,4 +102,5 @@ try {
     </div>
 </body>
 </html>
+
 

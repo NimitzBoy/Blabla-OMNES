@@ -22,7 +22,7 @@ require_once("config.php");
     <!-- formulaire publi d'un trajet -->
     <div class="body flex justify-center items-center flex-grow bg-cover bg-fixed bg-center" style="background-image: url('Étretat.jpg');">
         <div class="FormulaireRecherche bg-white p-8 shadow-lg rounded-lg w-full max-w-md">
-            <form method="post" action="AjoutTrajet.php" class="bg-white p-6 rounded-lg shadow-md">
+            <form method="post" action="AjoutTrajet.php" enctype="multipart/form-data" class="bg-white p-6 rounded-lg shadow-md">
                 <div class="mb-4">
                     <!-- adresse départ -->
                     <label for="Adresse_de_départ" class="block text-gray-700 font-bold mb-2">Adresse de départ:</label>
@@ -62,11 +62,23 @@ require_once("config.php");
                         <span class="ml-2 text-gray-700">€</span>
                     </div>
                 </div>
+                <!-- Nombres de places -->
                 <div class="mb-4">
-                    <label for="Prix_du_trajet_par_personne" class="block text-gray-700 font-bold mb-2">Nombre de places disponibles:</label>
+                    <label for="Nombres_de_places_dispos" class="block text-gray-700 font-bold mb-2">Nombre de places disponibles:</label>
                     <div class="flex items-center">
                         <input type="text" name="places_dispo" id="places_dispo" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                     </div>
+                </div>
+                <div class="mb-4">
+                    <!-- Préférences conducteurs -->
+                    <label for="Préférences_conducteur" class="block text-gray-700 font-bold mb-2">Vos Préférences:</label>
+                    <input type="text" name="preferences_conducteur" id="preferences_conducteur" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <div class="mb-4">
+                    <label for="photo_véhicule" class="block text-gray-700 font-bold mb-2">Photo du Véhicule</label>
+                    <div class="flex items-center">
+                        <input type="file" name="photo_vehicule" id="photo_vehicule" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                    </div>    
                 </div>
                 <div class="flex items-center justify-between">
                     <!-- bouton publication -->

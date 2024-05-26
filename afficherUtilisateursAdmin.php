@@ -37,29 +37,38 @@
     $adminEmails = ["mathilde.admin@gmail.com", "arnaud.admin@gmail.com", "william.admin@gmail.com"];
     
     // Traitement de la suppression
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_user_id'])) {
-        $deleteUserId = $_POST['delete_user_id'];
-        // Vérifier si l'utilisateur à supprimer n'est pas un administrateur
-        $checkEmailSql = "SELECT email FROM utilisateur WHERE id_utilisateur = :id";
-        $checkEmailStmt = $bdd->prepare($checkEmailSql);
-        $checkEmailStmt->bindParam(':id', $deleteUserId, PDO::PARAM_INT);
-        $checkEmailStmt->execute();
-        $userEmail = $checkEmailStmt->fetchColumn();
-        
-        if (!in_array($userEmail, $adminEmails)) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_user_id'])) {
+    $deleteUserId = $_POST['delete_user_id'];
+    // Vérifier si l'utilisateur à supprimer n'est pas un administrateur
+    $checkEmailSql = "SELECT email FROM utilisateur WHERE id_utilisateur = :id";
+    $checkEmailStmt = $bdd->prepare($checkEmailSql);
+    $checkEmailStmt->bindParam(':id', $deleteUserId, PDO::PARAM_INT);
+    $checkEmailStmt->execute();
+    $userEmail = $checkEmailStmt->fetchColumn();
+    
+    if (!in_array($userEmail, $adminEmails)) {
+        try {
+            // Supprimer les enregistrements dans passagers_trajet qui font référence à cet utilisateur
+            $deletePassagersSql = "DELETE FROM passagers_trajet WHERE id_utilisateur = :id";
+            $deletePassagersStmt = $bdd->prepare($deletePassagersSql);
+            $deletePassagersStmt->bindParam(':id', $deleteUserId, PDO::PARAM_INT);
+            $deletePassagersStmt->execute();
+            
+            // Ensuite, supprimer l'utilisateur lui-même
             $deleteSql = "DELETE FROM utilisateur WHERE id_utilisateur = :id";
             $deleteStmt = $bdd->prepare($deleteSql);
             $deleteStmt->bindParam(':id', $deleteUserId, PDO::PARAM_INT);
-            try {
-                $deleteStmt->execute();
-                echo '<p>Utilisateur supprimé avec succès.</p>';
-            } catch (PDOException $e) {
-                echo '<p>Erreur lors de la suppression de l\'utilisateur: ' . $e->getMessage() . '</p>';
-            }
-        } else {
-            echo '<p>Erreur: Impossible de supprimer un compte administrateur.</p>';
+            $deleteStmt->execute();
+            
+            echo '<p>Utilisateur supprimé avec succès.</p>';
+        } catch (PDOException $e) {
+            echo '<p>Erreur lors de la suppression de l\'utilisateur: ' . $e->getMessage() . '</p>';
         }
+    } else {
+        echo '<p>Erreur: Impossible de supprimer un compte administrateur.</p>';
     }
+}
+
 
     // Requête SQL pour récupérer les utilisateurs avec leurs photos et données sur le permis
     $sql = "SELECT * FROM utilisateur"; 
