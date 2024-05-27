@@ -21,16 +21,18 @@ try {
 
 // Rechercher les trajets en fonction des critères de recherche
 $trajets_recherche = [];
-if (isset($_POST["Lieu_Départ"], $_POST["destination"], $_POST["date_départ"])) {
+if (isset($_POST["Lieu_Départ"], $_POST["destination"], $_POST["date_départ"], $_POST["places_demandees"])) {
     $lieu_depart = $_POST["Lieu_Départ"];
     $lieu_arrivee = $_POST["destination"];
     $date_depart = $_POST["date_départ"];
+    $places_demandees = (int)$_POST["places_demandees"];
 
     try {
-        $stmt = $bdd->prepare("SELECT * FROM trajet WHERE lieu_depart = :lieu_depart AND lieu_arrivee = :lieu_arrivee AND date_depart = :date_depart");
+        $stmt = $bdd->prepare("SELECT * FROM trajet WHERE lieu_depart = :lieu_depart AND lieu_arrivee = :lieu_arrivee AND date_depart = :date_depart AND places_disponibles >= :places_demandees");
         $stmt->bindParam(':lieu_depart', $lieu_depart);
         $stmt->bindParam(':lieu_arrivee', $lieu_arrivee);
         $stmt->bindParam(':date_depart', $date_depart);
+        $stmt->bindParam(':places_demandees', $places_demandees);
         $stmt->execute();
 
         $trajets_recherche = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -61,20 +63,20 @@ if (isset($_POST["Lieu_Départ"], $_POST["destination"], $_POST["date_départ"])
                         <p><strong>Adresse d'arrivée:</strong> <?php echo htmlspecialchars($row['lieu_arrivee']); ?></p>
                         <p><strong>Date de départ:</strong> <?php echo htmlspecialchars($row['date_depart']); ?></p>
                         <p><strong>Prix du trajet par personne:</strong> <?php echo htmlspecialchars($row['prix']); ?>€</p>
-                        <p><strong>Nombre de places disponibles:</strong> <?php echo htmlspecialchars($row['places_disponibles']); ?>€</p>
+                        <p><strong>Nombre de places disponibles:</strong> <?php echo htmlspecialchars($row['places_disponibles']); ?></p>
                         <form method="get" action="detailsTrajet.php" class="inline-block mr-2">
                             <input type="hidden" name="id_trajet" value="<?php echo htmlspecialchars($row['id_trajet']); ?>">
                             <button type="submit" class="bg-blue-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">Détails du trajet</button>
                         </form>
                         <form method="post" action="reserverTrajet.php" class="inline-block">
                             <input type="hidden" name="id_trajet" value="<?php echo htmlspecialchars($row['id_trajet']); ?>">
-                            
+                            <input type="hidden" name="places_demandees" value="<?php echo htmlspecialchars($places_demandees); ?>">
                             <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Réserver</button>
                         </form>
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
-                <p class="text-red-500">Aucun trajet trouvé avec ces lieux de départ, d'arrivée et cette date.</p>
+                <p class="text-red-500">Aucun trajet trouvé avec ces lieux de départ, d'arrivée, cette date et ce nombre de places.</p>
             <?php endif; ?>
         </div>
     </div>

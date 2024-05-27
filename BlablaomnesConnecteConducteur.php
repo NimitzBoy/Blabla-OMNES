@@ -38,10 +38,10 @@ if (isset($_SESSION['nouveau_passager_alerte_affichee']) && $_SESSION['nouveau_p
                 // Réinitialiser la variable de session pour ne pas réafficher l'alerte
                 $_SESSION['nouveau_passager_alerte_affichee'] = false;
             } else {
-                echo "Les informations sur le passager n'ont pas été trouvées.";
+                
             }
         } else {
-            echo "Aucun détail trouvé pour ce trajet.";
+            
         }
     } catch (PDOException $e) {
         echo 'ERREUR : ' . $e->getMessage();

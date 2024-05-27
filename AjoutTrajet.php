@@ -29,6 +29,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $prix = $_POST["Prix_du_trajet_par_personne"];
                 $places_disponibles = $_POST["places_dispo"];
                 $preference_conducteur = $_POST["preferences_conducteur"];
+
+                // Récupérer les noms des campus depuis la bdd
+                $campus = getCampusList();
+
+                //on verifie que le depart et/ou l'arrivée contiennent bien un campus
+                $depart_ou_arrivee_contient_campus = false;
+
+                foreach ($campus as $camp) {
+                    if (stripos($lieu_depart, $camp) !== false || stripos($lieu_arrivee, $camp) !== false) {
+                        $depart_ou_arrivee_contient_campus = true;
+                        break;
+                    }
+                }
                 
                 // Traitement de l'upload de la photo
                 $photo_vehicule_tmp = $_FILES["photo_vehicule"]["tmp_name"]; // Chemin temporaire du fichier téléchargé
@@ -48,26 +61,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         } else {
                             // Déplacer le fichier téléchargé vers le répertoire de destination
                             if (move_uploaded_file($photo_vehicule_tmp, $photo_vehicule)) {
-                                // Insertion du trajet dans la base de données
-                                try {
-                                    $stmt = $bdd->prepare("INSERT INTO trajet (lieu_depart, lieu_arrivee, prix, date_depart, type_trajet, conducteur_id, places_disponibles, photo_vehicule, preference_conducteur) VALUES (:lieu_depart, :lieu_arrivee, :prix, :date_depart, :type_trajet, :conducteur_id, :places_disponibles, :photo_vehicule, :preference_conducteur)");
-                                    $stmt->bindParam(':lieu_depart', $lieu_depart);
-                                    $stmt->bindParam(':lieu_arrivee', $lieu_arrivee);
-                                    $stmt->bindParam(':date_depart', $date_depart);
-                                    $stmt->bindParam(':prix', $prix);
-                                    $stmt->bindParam(':type_trajet', $type_trajet);
-                                    $stmt->bindParam(':conducteur_id', $conducteur_id);
-                                    $stmt->bindParam(':places_disponibles', $places_disponibles);
-                                    $stmt->bindParam(':photo_vehicule', $photo_vehicule);
-                                    $stmt->bindParam(':preference_conducteur', $preference_conducteur);
-                                    if ($stmt->execute()) {
-                                        echo 'Trajet ajouté avec succès.';
-                                        header("Location: BlablaomnesConnecteConducteur.php");
-                                    } else {
-                                        echo 'Erreur lors de l\'ajout du trajet. Veuillez réessayer.';
-                                    }
-                                } catch (PDOException $e) {
-                                    echo 'ERREUR : ' . $e->getMessage();
+                                if ($depart_ou_arrivee_contient_campus) {
+                                    // Insertion du trajet dans la base de données
+                                    try {
+                                        $stmt = $bdd->prepare("INSERT INTO trajet (lieu_depart, lieu_arrivee, prix, date_depart, type_trajet, conducteur_id, places_disponibles, photo_vehicule, preference_conducteur) VALUES (:lieu_depart, :lieu_arrivee, :prix, :date_depart, :type_trajet, :conducteur_id, :places_disponibles, :photo_vehicule, :preference_conducteur)");
+                                        $stmt->bindParam(':lieu_depart', $lieu_depart);
+                                        $stmt->bindParam(':lieu_arrivee', $lieu_arrivee);
+                                        $stmt->bindParam(':date_depart', $date_depart);
+                                        $stmt->bindParam(':prix', $prix);
+                                        $stmt->bindParam(':type_trajet', $type_trajet);
+                                        $stmt->bindParam(':conducteur_id', $conducteur_id);
+                                        $stmt->bindParam(':places_disponibles', $places_disponibles);
+                                        $stmt->bindParam(':photo_vehicule', $photo_vehicule);
+                                        $stmt->bindParam(':preference_conducteur', $preference_conducteur);
+                                        if ($stmt->execute()) {
+                                            echo 'Trajet ajouté avec succès.';
+                                            header("Location: BlablaomnesConnecteConducteur.php");
+                                        } else {
+                                            echo 'Erreur lors de l\'ajout du trajet. Veuillez réessayer.';
+                                        }
+                                    } catch (PDOException $e) {
+                                        echo 'ERREUR : ' . $e->getMessage();
+                                    } 
+                                } else {
+                                    // si le trajet ne contient aucun campus: message d'erreur + exemple de noms de campus à renseigner
+                                    echo 'Le départ ou l\'arrivée doivent au moins contenir un campus.<br><br>';
+                                    echo 'Exemples de campus: Lyon, Paris, Eiffel, Citroen...';
                                 }
                             } else {
                                 echo "Désolé, une erreur s'est produite lors du téléchargement de votre fichier.";
@@ -105,14 +124,14 @@ function getValidationPermis($user_id)
     return $validation_permis;
 }
 
-// Fonction pour récupérer les noms des campus depuis la base de données
+// getCampusList permet de récupérer les noms des campus depuis la bdd
 function getCampusList()
 {
     global $bdd;
     $campus = [];
 
     try {
-        $stmt = $bdd->prepare("SELECT nom FROM campus"); // Assurez-vous que votre table de campus s'appelle "campus" et que la colonne des noms s'appelle "nom_campus"
+        $stmt = $bdd->prepare("SELECT nom FROM campus"); 
         $stmt->execute();
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $campus[] = $row['nom'];
@@ -124,6 +143,8 @@ function getCampusList()
     return $campus;
 }
 ?>
+
+
 
 
 

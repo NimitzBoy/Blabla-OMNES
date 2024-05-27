@@ -38,7 +38,6 @@ if (isset($_GET["id_trajet"])) {
     <div class="body flex justify-center items-center flex-grow bg-cover bg-fixed bg-center" style="background-image: url('Étretat.jpg');">
         <div class="bg-white p-8 shadow-lg rounded-lg w-full max-w-4xl">
             <?php if (isset($trajet_details)): ?>
-                <h2 class="text-xl font-bold mb-4">Détails du Trajet</h2>
                 <p><strong>Adresse de départ:</strong> <?php echo htmlspecialchars($trajet_details['lieu_depart']); ?></p>
                 <p><strong>Adresse d'arrivée:</strong> <?php echo htmlspecialchars($trajet_details['lieu_arrivee']); ?></p>
                 <p><strong>Date de départ:</strong> <?php echo htmlspecialchars($trajet_details['date_depart']); ?></p>

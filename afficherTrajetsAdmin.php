@@ -80,7 +80,7 @@ require_once("config.php");
             }
             echo '</table>';
         } else {
-            echo '<p>Aucun utilisateur trouvé.</p>';
+            echo '<p>Aucun trajet trouvé.</p>';
         }
     } catch(PDOException $e) {
         echo "Erreur: " . $e->getMessage();

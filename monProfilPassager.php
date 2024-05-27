@@ -67,7 +67,6 @@ try {
                     <div class="mt-4">
                         <h3 class="text-lg font-bold">Photo de Profil</h3>
                         <?php if (!empty($profil['photo'])): ?>
-                            <p><strong>Photo du profil:</strong></p>
                             <img src="<?php echo htmlspecialchars($profil['photo']); ?>" alt="Photo du Profil" class="w-48 h-48 object-cover rounded-full">
                         <?php else: ?>
                             <p>Aucune photo de profil disponible.</p>
